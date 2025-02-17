@@ -1,0 +1,27 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        maven { url "https://jitpack.io" }
+
+        // 添加其他 Maven 仓库
+        maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
+        maven { url "https://maven.aliyun.com/repository/public/" }
+        maven { url "https://maven.aliyun.com/repository/google/" }
+        maven { url "https://maven.aliyun.com/repository/jcenter/" }
+        maven { url "https://maven.aliyun.com/repository/central/" }
+
+        // 标准仓库
+        mavenCentral()
+        gradlePluginPortal()
+
+    }
+}
+rootProject.name = "Android-order-food"
+include ':app'
