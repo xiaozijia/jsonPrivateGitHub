@@ -1,0 +1,66 @@
+[
+  {
+    "id": 0,
+    "title": "鲍汁黄焖鸡",
+    "price": 20,
+    "image": "1",
+    "detail": "如有疑问请致电我们",
+    "imageUrl": ""
+  },
+  {
+    "id": 0,
+    "title": "辣焖骨头饭",
+    "price": 20,
+    "image": "2",
+    "detail": "新鲜可口，精选好店",
+    "imageUrl": ""
+  },
+  {
+    "id": 0,
+    "title": "战斧铁板鸭",
+    "price": 20,
+    "image": "3",
+    "detail": "津贴随机减，叠加满减可再减1.8元",
+    "imageUrl": ""
+  },
+  {
+    "id": 0,
+    "title": "粤粥记",
+    "price": 20,
+    "image": "4",
+    "detail": "本店主营粥店品类，奉行服务至上的理念",
+    "imageUrl": ""
+  },
+  {
+    "id": 0,
+    "title": "叫了一只鸡",
+    "price": 20,
+    "image": "5",
+    "detail": "欢迎各位新老用户光临我们门店！",
+    "imageUrl": ""
+  },
+  {
+    "id": 0,
+    "title": "隆江猪脚饭",
+    "price": 20,
+    "image": "6",
+    "detail": "用餐高峰期请提前下单",
+    "imageUrl": ""
+  },
+  {
+    "id": 0,
+    "title": "港式炸鸡",
+    "price": 20,
+    "image": "7",
+    "detail": "满30减1；满60减4；满100减8",
+    "imageUrl": ""
+  },
+  {
+    "id": 0,
+    "title": "兄弟土豆粉",
+    "price": 20,
+    "image": "8",
+    "detail": "欢迎各位新老用户光临我们门店！",
+    "imageUrl": ""
+  }
+]
