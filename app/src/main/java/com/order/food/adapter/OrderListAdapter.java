@@ -6,6 +6,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.order.food.R;
 import com.order.food.entity.OrderInfo;
+import com.order.food.utils.Utils;
 
 
 public class OrderListAdapter extends BaseQuickAdapter<OrderInfo, BaseViewHolder> {
@@ -23,7 +24,7 @@ public class OrderListAdapter extends BaseQuickAdapter<OrderInfo, BaseViewHolder
         baseViewHolder.setText(R.id.goodsPrice,   orderInfo.getPrice() + "");
         baseViewHolder.setText(R.id.title, orderInfo.getTitle());
         baseViewHolder.setText(R.id.detail, orderInfo.getDetail());
-        baseViewHolder.setImageResource(R.id.image, orderInfo.getImage());
+        Utils.loadImage(orderInfo.getImage(), baseViewHolder.getView(R.id.image));
 
     }
 }

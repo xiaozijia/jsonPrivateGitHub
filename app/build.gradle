@@ -53,5 +53,10 @@ dependencies {
     implementation "io.github.cymchad:BaseRecyclerViewAdapterHelper:3.0.9"
     implementation 'com.github.li-xiaojun:XPopup:2.6.8'
     implementation 'com.contrarywind:Android-PickerView:4.1.9'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
+// RxJava
+    implementation 'io.reactivex.rxjava3:rxjava:3.1.6'
+    implementation 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
 }

@@ -10,19 +10,30 @@ public class FoodsInfo implements Serializable {
     private int price;
     private int image;
     private String detail;
+    private String imageUrl;
 
 
-    public FoodsInfo(int _id, String title, int price, int image, String detail) {
+    public FoodsInfo(int _id, String title, int price, int image, String detail, String imageUrl) {
         this._id = _id;
         this.title = title;
         this.price = price;
         this.image = image;
         this.detail = detail;
+        this.imageUrl = imageUrl;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public int getImage() {
         return image;
     }
+
 
     public void setImage(int image) {
         this.image = image;

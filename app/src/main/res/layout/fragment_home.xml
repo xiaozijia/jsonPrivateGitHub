@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/fuse"
+
     tools:context=".fragment.HomeFragment">
 
 
@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/orgen"
-        app:title="美味瞬间"
+        app:title="南国外卖"
         app:titleTextColor="@color/white" />
 
 

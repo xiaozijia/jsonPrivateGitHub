@@ -44,8 +44,7 @@ public class UpdatePwdActivity extends BaseActivity<ActivityUpdatePwdBinding> {
             mUserDao = new UserDao(this);
         }
 
-        int row = mUserDao.update(UserInfo.getUserInfo().get_id() + "", password);
-        if (row > 0) {
+        if (mUserDao.updatePassword(UserInfo.getUserInfo().getMobile() + "", password)) {
             showToast("修改成功,请重新登录");
             setResult(2000);
             finish();

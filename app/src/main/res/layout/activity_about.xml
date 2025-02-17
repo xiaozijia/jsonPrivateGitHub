@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/fuse"
     android:orientation="vertical">
 
 
@@ -23,7 +22,7 @@
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"
-        android:src="@mipmap/tubiao" />
+        android:src="@mipmap/tupian" />
 
     <TextView
         android:layout_width="wrap_content"

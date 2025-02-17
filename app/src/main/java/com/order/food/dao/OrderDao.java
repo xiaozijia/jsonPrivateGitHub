@@ -30,7 +30,7 @@ public class OrderDao {
     /**
      *向数据库中添加数据
      */
-    public int insert(String mobile, String title, int price, int image, int food_num, String detail,String pay_method,String address) {
+    public int insert(String mobile, String title, int price, String image, int food_num, String detail,String pay_method,String address) {
         SQLiteDatabase db = mOrderDb.getWritableDatabase();//以写的形式打开数据库调用OderDao.Db构造方法配置的信息 来创建 person_info.db 数据库只执行一次onCreate方法
         ContentValues values = new ContentValues();
         values.put("mobile", mobile);
@@ -62,7 +62,7 @@ public class OrderDao {
             String phone = cursor.getString(cursor.getColumnIndex("mobile"));
             String title = cursor.getString(cursor.getColumnIndex("title"));
             int price = cursor.getInt(cursor.getColumnIndex("price"));
-            int image = cursor.getInt(cursor.getColumnIndex("image"));
+            String image = cursor.getString(cursor.getColumnIndex("image"));
             int food_num = cursor.getInt(cursor.getColumnIndex("food_num"));
             String detail = cursor.getString(cursor.getColumnIndex("detail"));
             String pay_method = cursor.getString(cursor.getColumnIndex("pay_method"));

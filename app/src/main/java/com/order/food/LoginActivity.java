@@ -1,7 +1,7 @@
 package com.order.food;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
+
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;

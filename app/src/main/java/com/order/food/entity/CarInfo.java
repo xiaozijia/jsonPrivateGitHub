@@ -8,11 +8,11 @@ public class CarInfo {
     private String mobile;
     private String title;
     private int price;
-    private int image;
+    private String image;
     private int food_num;
     private String detail;
 
-    public CarInfo(int _id, String mobile, String title, int price, int image, int food_num, String detail) {
+    public CarInfo(int _id, String mobile, String title, int price, String image, int food_num, String detail) {
         this._id = _id;
         this.mobile = mobile;
         this.title = title;
@@ -54,12 +54,11 @@ public class CarInfo {
         this.price = price;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
-
-    public void setImage(int image) {
-        this.image = image;
+    public void setImage(String image){
+        this.image=image;
     }
 
     public int getFood_num() {

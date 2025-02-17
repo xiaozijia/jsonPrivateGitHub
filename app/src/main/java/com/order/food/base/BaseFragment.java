@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewbinding.ViewBinding;
 
@@ -25,16 +26,15 @@ public abstract class BaseFragment <T extends ViewBinding> extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = getViewBinding();
         return mBinding.getRoot();
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setListener();
-
         initData();
     }
 
@@ -44,22 +44,20 @@ public abstract class BaseFragment <T extends ViewBinding> extends Fragment {
 
     protected abstract void initData();
 
-
     protected void showToast(String msg) {
         Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
     }
 
-
-    protected void  showProgressDialog(){
-        if (mProgressDialog==null){
-            mProgressDialog =new ProgressDialog(mContext);
+    protected void showProgressDialog() {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(mContext);
         }
         mProgressDialog.setMessage("正在加载中......");
         mProgressDialog.show();
-
     }
-    protected void dismissProgressDialog(){
-        if (mProgressDialog.isShowing()){
+
+    protected void dismissProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
             mProgressDialog.dismiss();
         }
     }

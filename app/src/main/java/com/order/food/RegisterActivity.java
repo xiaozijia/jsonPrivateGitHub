@@ -1,6 +1,7 @@
 package com.order.food;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -42,8 +43,6 @@ public class RegisterActivity extends BaseActivity<ActivityRegisterBinding> {
                     int row = mUserDao.insert(mobile, password);
                     if (row > 0) {
                         Toast.makeText(RegisterActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(RegisterActivity.this, "注册失败", Toast.LENGTH_SHORT).show();
                     }
                     finish();
                 }

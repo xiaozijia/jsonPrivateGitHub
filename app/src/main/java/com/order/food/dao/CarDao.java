@@ -30,7 +30,7 @@ public class CarDao {
     /**
      * 添加
      */
-    public int insert(String mobile, String title, int price, int image, int food_num, String detail) {
+    public int insert(String mobile, String title, int price, String image, int food_num, String detail) {
         SQLiteDatabase db = mCarDb.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("mobile", mobile);
@@ -59,7 +59,7 @@ public class CarDao {
             String phone = cursor.getString(cursor.getColumnIndex("mobile"));
             String title = cursor.getString(cursor.getColumnIndex("title"));
             int price = cursor.getInt(cursor.getColumnIndex("price"));
-            int image = cursor.getInt(cursor.getColumnIndex("image"));
+            String image = cursor.getString(cursor.getColumnIndex("image"));
             int food_num = cursor.getInt(cursor.getColumnIndex("food_num"));
             String detail = cursor.getString(cursor.getColumnIndex("detail"));
             list.add(new CarInfo(_id, phone, title, price, image, food_num, detail));

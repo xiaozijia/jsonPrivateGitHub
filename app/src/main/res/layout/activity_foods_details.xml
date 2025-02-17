@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/fuse"
     android:orientation="vertical">
 
 
@@ -37,9 +36,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:textSize="20dp"
+            android:text="详情"
             android:textColor="@color/black"
-            android:text="详情" />
+            android:textSize="20dp" />
 
         <View
             android:layout_width="match_parent"
@@ -54,8 +53,8 @@
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:text="xxxx"
-            android:textSize="16dp"
-            android:textColor="@color/text_color_2" />
+            android:textColor="@color/text_color_2"
+            android:textSize="16dp" />
 
         <View
             android:layout_width="match_parent"
@@ -70,8 +69,8 @@
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:text="商品单价："
-            android:textSize="16dp"
-            android:textColor="@color/text_color_2" />
+            android:textColor="@color/text_color_2"
+            android:textSize="16dp" />
 
         <View
             android:layout_width="match_parent"
@@ -93,8 +92,8 @@
                 android:paddingRight="16dp"
                 android:paddingBottom="10dp"
                 android:text="购买数量："
-                android:textSize="16dp"
-                android:textColor="@color/text_color_2" />
+                android:textColor="@color/text_color_2"
+                android:textSize="16dp" />
 
             <EditText
                 android:id="@+id/car_order_num"
@@ -104,9 +103,9 @@
                 android:inputType="number"
                 android:maxLength="3"
                 android:text="1"
-                tools:ignore='TouchTargetSizeCheck'
                 android:textColor="@color/text_color_2"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                tools:ignore='TouchTargetSizeCheck' />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -114,10 +113,9 @@
                 android:inputType="number"
                 android:maxLength="3"
                 android:text="份"
-                android:textSize="16dp"
-                tools:ignore='TouchTargetSizeCheck'
                 android:textColor="@color/text_red"
-                />
+                android:textSize="16dp"
+                tools:ignore='TouchTargetSizeCheck' />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

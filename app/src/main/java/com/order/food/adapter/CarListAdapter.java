@@ -1,5 +1,7 @@
 package com.order.food.adapter;
 
+import static com.order.food.utils.Utils.loadImage;
+
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -8,6 +10,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.order.food.R;
 import com.order.food.entity.CarInfo;
+import com.order.food.utils.Utils;
 
 
 public class CarListAdapter extends BaseQuickAdapter<CarInfo, BaseViewHolder> {
@@ -17,7 +20,7 @@ public class CarListAdapter extends BaseQuickAdapter<CarInfo, BaseViewHolder> {
 
     @Override
     protected void convert(@NonNull BaseViewHolder baseViewHolder, CarInfo carInfo) {
-        baseViewHolder.setImageResource(R.id.image,carInfo.getImage());
+        Utils.loadImage(carInfo.getImage(), baseViewHolder.getView(R.id.image));
         baseViewHolder.setText(R.id.title,carInfo.getTitle());
         baseViewHolder.setText(R.id.price,carInfo.getPrice()+"");
         baseViewHolder.setText(R.id.food_num,carInfo.getFood_num()+"");

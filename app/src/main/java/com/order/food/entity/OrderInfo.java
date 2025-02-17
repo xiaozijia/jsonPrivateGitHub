@@ -7,7 +7,7 @@ public class OrderInfo {//这个类是跟数据库里面用到的表对应的结
     private String mobile;
     private String title;
     private int price;
-    private int image;
+    private String image;
     private int food_num;
     private String detail;
 
@@ -15,7 +15,7 @@ public class OrderInfo {//这个类是跟数据库里面用到的表对应的结
     private String address;
     private String order_num;
 
-    public OrderInfo(int _id, String mobile, String title, int price, int image, int food_num, String detail, String pay_method, String address, String order_num) {
+    public OrderInfo(int _id, String mobile, String title, int price, String image, int food_num, String detail, String pay_method, String address, String order_num) {
         this._id = _id;
         this.mobile = mobile;
         this.title = title;
@@ -68,11 +68,11 @@ public class OrderInfo {//这个类是跟数据库里面用到的表对应的结
         this.price = price;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

@@ -10,7 +10,9 @@ import com.order.food.dao.CarDao;
 import com.order.food.databinding.ActivityFoodsDetailsBinding;
 import com.order.food.entity.FoodsInfo;
 import com.order.food.entity.UserInfo;
+import com.order.food.utils.Utils;
 
+import okhttp3.internal.Util;
 
 
 public class FoodsDetailsActivity extends BaseActivity<ActivityFoodsDetailsBinding> {
@@ -50,7 +52,7 @@ public class FoodsDetailsActivity extends BaseActivity<ActivityFoodsDetailsBindi
                             if (mCarDao == null) {
                                 mCarDao = new CarDao(FoodsDetailsActivity.this);
                             }
-                            int row = mCarDao.insert(UserInfo.getUserInfo().getMobile(), foodsInfo.getTitle(), foodsInfo.getPrice(), foodsInfo.getImage(), order_number, foodsInfo.getDetail());
+                            int row = mCarDao.insert(UserInfo.getUserInfo().getMobile(), foodsInfo.getTitle(), foodsInfo.getPrice(), foodsInfo.getImageUrl(), order_number, foodsInfo.getDetail());
                             if (row > 0) {
                                 showToast("添加成功");
                             } else {
@@ -73,7 +75,7 @@ public class FoodsDetailsActivity extends BaseActivity<ActivityFoodsDetailsBindi
             mBinding.goodName.setText(foodsInfo.getTitle());
             mBinding.goodPrice.setText("商品单价￥：  " + foodsInfo.getPrice());
             mBinding.detail.setText(foodsInfo.getDetail());
-            mBinding.image.setImageResource(foodsInfo.getImage());
+            Utils.loadImage(foodsInfo.getImageUrl(),mBinding.image);
         }
     }
 }
