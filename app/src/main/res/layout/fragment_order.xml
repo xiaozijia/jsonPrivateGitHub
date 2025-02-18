@@ -10,7 +10,7 @@
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/orgen"
+        android:background="@color/purple_700"
         app:title="订  单"
         app:titleTextColor="@color/white">
 

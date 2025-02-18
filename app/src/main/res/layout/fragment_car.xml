@@ -11,7 +11,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/orgen"
+        android:background="@color/purple_700"
         app:title="购物车"
         app:titleTextColor="@color/white" />
 
@@ -25,59 +25,57 @@
         tools:listitem="@layout/car_list_item" />
 
 
-
-
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:background="@color/orgen"
-        android:gravity="center_vertical|right"
-        android:layout_height="60dp">
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/purple_700"
+        android:gravity="center_vertical|right">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
-            android:padding="10dp"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:text="合计:"/>
+                android:text="合计:"
+                android:textSize="15sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#F44336"
-                android:text="￥"/>
+                android:text="￥"
+                android:textColor="#F44336" />
 
             <TextView
                 android:id="@+id/total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="0.00"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:text="0.00"/>
+                android:textStyle="bold" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
 
         <androidx.cardview.widget.CardView
-            android:layout_marginRight="20dp"
             android:layout_width="90dp"
-            app:cardElevation="0dp"
-            app:cardCornerRadius="20dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="20dp"
             android:backgroundTint="#F44336"
-            android:layout_height="40dp">
+            app:cardCornerRadius="20dp"
+            app:cardElevation="0dp">
 
             <TextView
                 android:id="@+id/account"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:textStyle="bold"
+                android:text="结算"
                 android:textColor="@color/white"
-                android:text="结算"/>
+                android:textStyle="bold" />
 
         </androidx.cardview.widget.CardView>
 

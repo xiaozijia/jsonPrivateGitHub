@@ -11,7 +11,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/orgen"
+        android:background="@color/purple_700"
         app:navigationIcon="@mipmap/back"
         app:title="关于我们"
         app:titleTextColor="@color/white" />
@@ -29,10 +29,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:background="@color/fuse"
+        android:background="@color/purple_700"
         android:textColor="@color/black"
         android:textSize="30dp"
-        android:text="美味瞬间" />
+        android:text="南国外卖" />
 
 
     <ImageView

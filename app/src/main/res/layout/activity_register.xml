@@ -16,7 +16,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/orgen"
+            android:background="@color/purple_700"
             app:navigationIcon="@mipmap/back"
             app:title="注  册"
             app:titleTextColor="@color/white" />
@@ -126,7 +126,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="16dp"
-            android:background="@color/orgen"
+            android:background="@color/purple_700"
             android:textSize="20sp"
             android:text="注册" />
 

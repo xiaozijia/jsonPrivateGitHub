@@ -11,7 +11,7 @@ public class RetrofitClient {
     public static FoodService getFoodService() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(LenientGsonConverterFactory.create())
                 .build();
 
         return retrofit.create(FoodService.class);

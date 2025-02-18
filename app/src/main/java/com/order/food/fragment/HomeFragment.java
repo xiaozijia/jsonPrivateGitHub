@@ -2,7 +2,6 @@ package com.order.food.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -11,11 +10,9 @@ import androidx.annotation.Nullable;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.order.food.FoodsDetailsActivity;
-import com.order.food.HomePresenter;
-import com.order.food.IHomeView;
+import com.order.food.presenter.HomePresenter;
+import com.order.food.presenter.IHomeView;
 import com.order.food.adapter.HomeListAdapter;
-import com.order.food.api.FoodService;
-import com.order.food.api.RetrofitClient;
 import com.order.food.base.BaseFragment;
 import com.order.food.databinding.FragmentHomeBinding;
 import com.order.food.entity.FoodsInfo;
@@ -24,7 +21,6 @@ import com.order.food.utils.DataService;
 import java.util.List;
 
 public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements IHomeView {
-
 
     private HomeListAdapter mHomeListAdapter;
     private HomePresenter mHomePresenter;
@@ -44,8 +40,19 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements I
     protected void setListener() {
         mHomeListAdapter = new HomeListAdapter();
         mHomeListAdapter.setList(DataService.getHomeListData());
-       mBinding.recyclerView.setAdapter(mHomeListAdapter);
-
+        mBinding.recyclerView.setAdapter(mHomeListAdapter);
+        mBinding.swipeRefreshLayout.setOnChildScrollUpCallback((parent, child) -> {
+            if (mBinding.recyclerView != null && mBinding.recyclerView.canScrollVertically(-1)) {
+                // 如果 RecyclerView 可以上滑，不触发下拉刷新
+                return true;
+            }
+            return false;
+        });
+       mBinding.swipeRefreshLayout.setOnRefreshListener(() -> {
+            // 刷新逻辑
+           mHomePresenter.loadFoodsData();
+           mBinding.swipeRefreshLayout.setRefreshing(false);
+        });
         // 点击事件
         mHomeListAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override

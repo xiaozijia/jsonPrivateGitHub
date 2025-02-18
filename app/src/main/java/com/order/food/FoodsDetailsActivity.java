@@ -75,7 +75,8 @@ public class FoodsDetailsActivity extends BaseActivity<ActivityFoodsDetailsBindi
             mBinding.goodName.setText(foodsInfo.getTitle());
             mBinding.goodPrice.setText("商品单价￥：  " + foodsInfo.getPrice());
             mBinding.detail.setText(foodsInfo.getDetail());
-            Utils.loadImage(foodsInfo.getImageUrl(),mBinding.image);
+            mBinding.content.setText(foodsInfo.getContent());
+            Utils.loadImage(foodsInfo.getImageUrl(), mBinding.image);
         }
     }
 }

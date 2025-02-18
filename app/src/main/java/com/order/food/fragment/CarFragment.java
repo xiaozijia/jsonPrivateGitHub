@@ -105,15 +105,10 @@ public class CarFragment extends BaseFragment<FragmentCarBinding> {
                         public void onCheckedChanged(RadioGroup radioGroup, int checkid) {
                             switch (checkid) {
                                 case R.id.wx:
-
                                     pay_method = "微信";
-
                                     break;
-
                                 case R.id.zfb:
-
                                     pay_method = "支付宝";
-
                                     break;
                             }
                         }
@@ -167,10 +162,8 @@ public class CarFragment extends BaseFragment<FragmentCarBinding> {
         if (mCarDao == null) {
             mCarDao = new CarDao(getActivity());
         }
-
         List<CarInfo> list = mCarDao.queryCarList(UserInfo.getUserInfo().getMobile());
         mCarListAdapter.setList(list);
-        //结算
         setDataTotal(list);
 
     }

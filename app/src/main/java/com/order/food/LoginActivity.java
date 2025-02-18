@@ -3,6 +3,7 @@ package com.order.food;
 import android.Manifest;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 
@@ -29,8 +30,8 @@ import java.util.Random;
 public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
     private UserDao mUserDao;
     private CountDownTimer countDownTimer;
+    private static final int PERMISSION_REQUEST_CODE = 123;
     private String verificationCode;
-    private static final int PERMISSION_REQUEST_CODE = 1;
 
     @Override
     protected ActivityLoginBinding getViewBinding() {
@@ -72,7 +73,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
                     showToast("请输入密码");
                 } else if (TextUtils.isEmpty(verify)) {
                     showToast("您的验证码没有输入，请输入验证码");
-                } else if (verificationCode .isEmpty()|| !verificationCode.equals(verify)) {
+                } else if (verificationCode.isEmpty() || !verificationCode.equals(verify)) {
                     showToast("验证码输入错误，请重新输入");
                 } else {
                     login(mobile, password);
@@ -82,36 +83,29 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
 
     }
 
-    private void showNotification() {
-        startCountDownTimer();
-        // 生成验证码
-        verificationCode = generateRandomCode();
-        // 创建通知管理器
-        String CHANNEL_ID = "high_priority_channel";
-
-        // 创建通知渠道（Android O及以上）
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel(
-                    CHANNEL_ID, "High Priority Channel", NotificationManager.IMPORTANCE_HIGH);
-            NotificationManager manager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
-            manager.createNotificationChannel(channel);
+    private void checkPermissionAndSendNotification() {
+        // 检查是否已经拥有权限
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                // 权限未开启，请求权限
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.POST_NOTIFICATIONS}, PERMISSION_REQUEST_CODE);
+            } else {
+                // 权限已开启，直接发送通知
+                showNotification();
+            }
+        } else {
+            // 对于 Android 12 及以下版本，无需动态申请通知权限
+            showNotification();
         }
-        // 创建通知
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(mContext, CHANNEL_ID)
-                .setSmallIcon(R.mipmap.tupian)
-                .setContentTitle("验证码通知")
-                .setContentText("您的验证码是: " + verificationCode)
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setAutoCancel(true);
-        NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(1, builder.build());
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == PERMISSION_REQUEST_CODE) {
-            // 再次检查权限状态，而不是直接依赖grantResults
+            // 再次检查权限状态，而不是直接依赖 grantResults
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
                 // 权限被授予，显示通知
                 showNotification();
@@ -123,18 +117,30 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
         }
     }
 
-    private void checkPermissionAndSendNotification() {
-        // 检查是否已经拥有权限
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
-                == PackageManager.PERMISSION_GRANTED) {
-            // 权限已开启，直接显示通知
-            showNotification();
-        } else {
-            // 权限未开启，请求权限
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.POST_NOTIFICATIONS},
-                    PERMISSION_REQUEST_CODE);
+    private void showNotification() {
+        // 生成验证码
+        startCountDownTimer();
+        verificationCode = generateRandomCode();
+        String CHANNEL_ID = "high_priority_channel";
+
+        // 创建通知渠道（Android O及以上）
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(
+                    CHANNEL_ID, "High Priority Channel", NotificationManager.IMPORTANCE_HIGH);
+            NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            manager.createNotificationChannel(channel);
         }
+
+        // 创建通知
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(R.mipmap.tupian)
+                .setContentTitle("南国外卖验证码")
+                .setContentText("验证码为:" + verificationCode)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setAutoCancel(true);
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(1, builder.build());
     }
 
     private void openAppSettings() {
@@ -150,7 +156,6 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
         if (countDownTimer != null) {
             countDownTimer.cancel();
         }
-
         // 创建倒计时器，倒计时60秒
         countDownTimer = new CountDownTimer(60000, 1000) {
             @Override

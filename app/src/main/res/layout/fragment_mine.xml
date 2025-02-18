@@ -10,7 +10,7 @@
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/orgen"
+        android:background="@color/purple_700"
         app:title="个人中心"
         app:titleTextColor="@color/white" />
 
@@ -20,16 +20,14 @@
         android:layout_height="180dp"
         android:gravity="center"
         android:orientation="vertical">
-
-
         <androidx.cardview.widget.CardView
             android:layout_width="100dp"
             android:layout_height="100dp"
             app:cardCornerRadius="40dp">
-
-            <ImageView
+            <ImageButton
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:id="@+id/imageIcon"
                 android:src="@mipmap/yonghu" />
 
         </androidx.cardview.widget.CardView>

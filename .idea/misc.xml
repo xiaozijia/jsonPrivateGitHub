@@ -14,15 +14,17 @@
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/drawable/tv_shape.xml" value="0.1" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/activity_about.xml" value="0.18489583333333334" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/activity_foods_details.xml" value="0.18489583333333334" />
+        <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/activity_list_item.xml" value="0.1" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/activity_main.xml" value="0.12664640324214793" />
+        <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/activity_picture_choose.xml" value="0.1" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/activity_register.xml" value="0.18489583333333334" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/activity_update_pwd.xml" value="0.12664640324214793" />
-        <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/car_list_item.xml" value="0.10914855072463768" />
+        <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/car_list_item.xml" value="0.1452152110321772" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/empty_layout.xml" value="0.18489583333333334" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/fragment_car.xml" value="0.18489583333333334" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/fragment_home.xml" value="0.12664640324214793" />
-        <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/fragment_mine.xml" value="0.18489583333333334" />
+        <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/fragment_mine.xml" value="0.15" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/fragment_order.xml" value="0.1" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/home_list_item.xml" value="0.18489583333333334" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/order_list_item.xml" value="0.18489583333333334" />
