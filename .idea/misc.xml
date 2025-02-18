@@ -3,12 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/22971/.gradle/caches/transforms-3/b43974d9512098ca7b634bda7f30babd/transformed/jetified-pictureselector-v3.10.7/res/drawable/ps_image_placeholder.xml" value="0.1" />
+        <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/drawable/btn_bg.xml" value="0.3365" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/drawable/et_bg.xml" value="0.251" />
+        <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/drawable/ic_baseline_reorder_24.xml" value="0.121" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/drawable/ic_baseline_shopping_cart_24.xml" value="0.121" />
+        <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/drawable/ic_baseline_supervisor_account_24.xml" value="0.1" />
+        <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/drawable/login_bg.xml" value="0.1" />
+        <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/drawable/tv_shape.xml" value="0.1" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/activity_about.xml" value="0.18489583333333334" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/activity_foods_details.xml" value="0.18489583333333334" />
-        <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/activity_login.xml" value="0.16544117647058823" />
+        <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/activity_main.xml" value="0.12664640324214793" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/activity_register.xml" value="0.18489583333333334" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/activity_update_pwd.xml" value="0.12664640324214793" />

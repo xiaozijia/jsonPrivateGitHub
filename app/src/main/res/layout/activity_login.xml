@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/fuse"
+
     android:orientation="vertical">
 
 
@@ -16,9 +16,9 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/orgen"
-            app:title="美味瞬间"
-            app:titleTextColor="@color/white"/>
+            android:background="@color/purple_700"
+            app:title="南国外卖"
+            app:titleTextColor="@color/white" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="100dp"
@@ -27,7 +27,7 @@
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="20dp"
-            android:src="@mipmap/tupian"/>
+            android:src="@mipmap/tupian" />
 
 
     </RelativeLayout>
@@ -93,6 +93,41 @@
                 android:inputType="textPassword"
                 android:textColor="@color/text_color_2"
                 android:textSize="15sp" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="10dp"
+            android:background="@drawable/et_bg"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="验证码："
+                android:textColor="@color/text_color_2" />
+
+            <EditText
+                android:id="@+id/verifyEdit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="请输入您的验证码"
+                android:inputType="textPassword"
+                android:textColor="@color/text_color_2"
+                android:textSize="15sp" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="点击获得验证码"
+                android:textSize="15sp"
+                android:clickable="true"
+                android:background="@drawable/btn_bg"
+                android:id="@+id/verify"
+                />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
 
