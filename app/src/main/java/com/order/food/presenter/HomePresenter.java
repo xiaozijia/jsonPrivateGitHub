@@ -27,14 +27,14 @@ public class HomePresenter {
                 if (response.isSuccessful() && response.body() != null) {
                     mView.updateData(response.body());
                 } else {
-                    mView.showError("加载数据失败，请检查网络和服务器");
+                    mView.showError("请检查您的网络设置");
                 }
             }
 
             @Override
             public void onFailure(Call<List<FoodsInfo>> call, Throwable t) {
                 mView.hideLoading();
-                mView.showError(t.getMessage());
+                mView.showError("请检查您的网络设置");
             }
         });
     }

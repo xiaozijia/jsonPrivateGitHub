@@ -5,11 +5,21 @@ import java.io.Serializable;
 public class PictureInfo implements Serializable {
     private int id;
     private String imageUrl;
+    private static String mMobile;
 
     // 构造函数
     public PictureInfo(int id, String imageUrl) {
         this.id = id;
         this.imageUrl = imageUrl;
+    }
+
+    public static String getMobile(){
+        return mMobile;
+    }
+
+
+    public static void setMobile(String mobile) {
+        mMobile = mobile;
     }
 
     // id的getter和setter方法

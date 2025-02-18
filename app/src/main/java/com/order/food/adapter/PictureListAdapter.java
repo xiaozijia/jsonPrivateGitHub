@@ -26,7 +26,7 @@ public class PictureListAdapter extends BaseQuickAdapter<PictureInfo, BaseViewHo
       baseViewHolder.getView(R.id.image).setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
-              pictureDao.insertOrUpdate("1",productInfo.getImageUrl());
+              pictureDao.insertOrUpdate(PictureInfo.getMobile(),productInfo.getImageUrl());
               reBackToActivity.reBack();
           }
       });

@@ -31,6 +31,7 @@
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:text="xxxxxxxxxxxxx"
+                android:gravity="center"
                 android:textColor="@color/text_color_2"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -39,8 +40,9 @@
             <TextView
 
                 android:id="@+id/introduce"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:layout_marginTop="6dp"
                 android:singleLine="true"
                 android:text="xxxxxxxxxxxxxxxx" />
@@ -48,6 +50,7 @@
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
+                android:layout_gravity="center"
                 android:layout_height="wrap_content">
 
                 <TextView

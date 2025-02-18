@@ -12,6 +12,7 @@ import com.order.food.base.BaseFragment;
 import com.order.food.dao.PictureDao;
 import com.order.food.dao.UserDao;
 import com.order.food.databinding.FragmentMineBinding;
+import com.order.food.entity.PictureInfo;
 import com.order.food.entity.UserInfo;
 import com.order.food.utils.Utils;
 
@@ -41,7 +42,7 @@ public class MineFragment extends BaseFragment<FragmentMineBinding> {
     public void onResume() {
         super.onResume();
         try{
-            Utils.loadImage(mPictureDao.queryById("1"),mBinding.imageIcon);
+            Utils.loadImage(mPictureDao.queryById(PictureInfo.getMobile()),mBinding.imageIcon);
         }
        catch (Exception e){
             e.printStackTrace();

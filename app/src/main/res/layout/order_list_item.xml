@@ -59,11 +59,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
-                    android:textSize="13sp"
-                    android:text="xxxxxxxxx" />
-
-
-
+                    android:text="xxxxxxxxx"
+                    android:textSize="13sp" />
 
 
                 <androidx.appcompat.widget.LinearLayoutCompat
@@ -112,9 +109,9 @@
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
-                    android:gravity="right"
+                    android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
-                    android:layout_height="wrap_content">
+                    android:gravity="right">
 
                     <TextView
                         android:layout_width="wrap_content"

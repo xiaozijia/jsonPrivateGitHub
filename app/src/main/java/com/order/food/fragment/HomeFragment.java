@@ -39,7 +39,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements I
     @Override
     protected void setListener() {
         mHomeListAdapter = new HomeListAdapter();
-        mHomeListAdapter.setList(DataService.getHomeListData());
+        mHomeListAdapter.setList(DataService.getHomeListData(mContext));
         mBinding.recyclerView.setAdapter(mHomeListAdapter);
         mBinding.swipeRefreshLayout.setOnChildScrollUpCallback((parent, child) -> {
             if (mBinding.recyclerView != null && mBinding.recyclerView.canScrollVertically(-1)) {

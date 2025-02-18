@@ -47,7 +47,7 @@
         android:textColor="@color/black"
         android:padding="16dp"
         android:textSize="26dp"
-        android:text="制作人：XXX\n\n单位：XXXXX\n\n班级：XXXXXXXXX\n\n学号：XXXXXXXXX\n\n联系电话：XXXXXXXX" />
+        android:text="制作人：萧子佳\n\n单位：中山大学\n\n班级：计算机一班\n\n学号：保密\n\n联系电话：4003123123" />
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

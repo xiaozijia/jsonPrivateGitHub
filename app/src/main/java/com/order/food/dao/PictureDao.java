@@ -19,8 +19,8 @@ public class PictureDao {
 
     /**
      * 插入或更新图片信息
-     * @param id 图片ID
-     * @param imageUrl 图片URL
+     * @param id 电话
+     * @param imageUrl 图片的URL路径
      */
     public void insertOrUpdate(String id, String imageUrl) {
         SQLiteDatabase db = mPictureDb.getWritableDatabase();

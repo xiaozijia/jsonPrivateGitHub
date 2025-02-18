@@ -21,8 +21,10 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
 import com.order.food.base.BaseActivity;
+import com.order.food.dao.PictureDao;
 import com.order.food.dao.UserDao;
 import com.order.food.databinding.ActivityLoginBinding;
+import com.order.food.entity.PictureInfo;
 import com.order.food.entity.UserInfo;
 
 import java.util.Random;
@@ -194,6 +196,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
         if (null != login) {
             if (login.getPassword().equals(password) && login.getMobile().equals(mobile)) {
                 UserInfo.setUserInfo(login);
+                PictureInfo.setMobile(mobile);
                 verificationCode = "";
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 showToast("登录成功");
