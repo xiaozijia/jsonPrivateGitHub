@@ -49,7 +49,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
         // 删除按钮点击事件
         holder.btnDelete.setOnClickListener(v -> {
             AddressDao addressDao = new AddressDao(context);
-            int deleteCount = addressDao.delete("1234567890", address);
+            int deleteCount = addressDao.delete(PictureInfo.getMobile(), address);
             if (deleteCount > 0) {
                 addresses.remove(position);
                 notifyItemRemoved(position);
@@ -93,7 +93,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
                 if (updateCount > 0) {
                     addresses.set(position, newAddress);
                     notifyItemChanged(position);
-                    Toast.makeText(context, "地址修改成功", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "地址修改成功或者地址保持一致", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(context, "修改失败", Toast.LENGTH_SHORT).show();
                 }

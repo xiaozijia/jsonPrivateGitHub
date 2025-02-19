@@ -1,36 +1,68 @@
 package com.order.food;
 
-import android.content.Intent;
 import android.graphics.Rect;
+import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.order.food.adapter.PictureListAdapter;
 import com.order.food.base.BaseActivity;
-import com.order.food.dao.PictureDao;
 import com.order.food.databinding.ActivityPictureChooseBinding;
-import com.order.food.entity.FoodsInfo;
 import com.order.food.entity.PictureInfo;
 import com.order.food.presenter.IPictureChooseView;
 import com.order.food.presenter.PictureChoosePresenter;
+import com.order.food.utils.NetworkMonitor;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
 public class PictureChooseActivity extends BaseActivity<ActivityPictureChooseBinding> implements IPictureChooseView ,reBackToActivity {
     private PictureChoosePresenter mPictureChoosePresenter;
     private PictureListAdapter mProductListAdapter;
+    private NetworkMonitor networkMonitor;
 
     @Override
     protected ActivityPictureChooseBinding getViewBinding() {
         return ActivityPictureChooseBinding.inflate(getLayoutInflater());
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        networkMonitor.unregisterCallback();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        networkMonitor=new NetworkMonitor(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onNetworkConnected(NetworkMonitor.NetworkConnectedEvent event) {
+        // 网络已连接，加载数据
+        mPictureChoosePresenter.loadPictureData();
     }
 
     @Override

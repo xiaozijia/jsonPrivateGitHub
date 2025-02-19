@@ -22,6 +22,8 @@ public class PictureChoosePresenter {
         this.mFoodService = RetrofitClient.getFoodService();
     }
 
+
+
     public void loadPictureData() {
         mView.showLoading();
         mFoodService.getPicturesInfo().enqueue(new Callback<List<PictureInfo>>() {
@@ -31,14 +33,14 @@ public class PictureChoosePresenter {
                 if (response.isSuccessful() && response.body() != null) {
                     mView.updateData(response.body());
                 } else {
-                    mView.showError("加载数据失败，请检查网络和服务器");
+                    mView.showError("本地流量无法运行此应用");
                 }
             }
 
             @Override
             public void onFailure(Call<List<PictureInfo>> call, Throwable t) {
                 mView.hideLoading();
-                mView.showError(t.getMessage());
+                mView.showError("本地流量无法运行此应用");
             }
         });
     }

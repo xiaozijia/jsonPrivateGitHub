@@ -1,11 +1,13 @@
 package com.order.food.fragment;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -20,25 +22,61 @@ import com.order.food.base.BaseFragment;
 import com.order.food.databinding.FragmentHomeBinding;
 import com.order.food.entity.FoodsInfo;
 import com.order.food.utils.DataService;
+import com.order.food.utils.NetworkMonitor;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.List;
 
 public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements IHomeView {
-
+    private NetworkMonitor networkMonitor;
     private HomeVerticalAdapter mHOmeVerticalAdapter;
     private HomePresenter mHomePresenter;
     private HomeHorizontalAdapter mHomeHorizontalAdapter;
     private int position = 0;
     private View view;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        networkMonitor.unregisterCallback();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mHomePresenter = new HomePresenter(this);
+        networkMonitor = new NetworkMonitor(getContext());
     }
 
     @Override
     protected FragmentHomeBinding getViewBinding() {
         return FragmentHomeBinding.inflate(getLayoutInflater());
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onNetworkConnected(NetworkMonitor.NetworkConnectedEvent event) {
+        // 网络已连接，加载数据
+        mHomePresenter.loadCaiNameInfo();
+        mHomePresenter.loadFoodsData();
+        position=0;
+        this.view=null;
     }
 
     @Override
@@ -57,24 +95,46 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements I
         mBinding.swipeRefreshLayout.setOnRefreshListener(() -> {
             if (position == 0) {
                 mHomePresenter.loadFoodsData();
+                if (mBinding.horizontalRecyclerView.getAdapter().getItemCount() == 0) {
+                    mHomePresenter.loadCaiNameInfo();
+                }
+
             }
             if (position == 1) {
                 mHomePresenter.loadChaoShangInfo();
+                if (mBinding.horizontalRecyclerView.getAdapter().getItemCount() == 0) {
+                    mHomePresenter.loadCaiNameInfo();
+                }
             }
             if (position == 2) {
                 mHomePresenter.loadHuNanInfo();
+                if (mBinding.horizontalRecyclerView.getAdapter().getItemCount() == 0) {
+                    mHomePresenter.loadCaiNameInfo();
+                }
             }
             if (position == 3) {
                 mHomePresenter.loadTaiGuoInfo();
+                if (mBinding.horizontalRecyclerView.getAdapter().getItemCount() == 0) {
+                    mHomePresenter.loadCaiNameInfo();
+                }
             }
             if (position == 4) {
                 mHomePresenter.loadGuangDongInfo();
+                if (mBinding.horizontalRecyclerView.getAdapter().getItemCount() == 0) {
+                    mHomePresenter.loadCaiNameInfo();
+                }
             }
             if (position == 5) {
                 mHomePresenter.loadNaiChaInfo();
+                if (mBinding.horizontalRecyclerView.getAdapter().getItemCount() == 0) {
+                    mHomePresenter.loadCaiNameInfo();
+                }
             }
             if (position == 6) {
                 mHomePresenter.loadRiChangInfo();
+                if (mBinding.horizontalRecyclerView.getAdapter().getItemCount() == 0) {
+                    mHomePresenter.loadCaiNameInfo();
+                }
             }
             mBinding.swipeRefreshLayout.setRefreshing(false);
         });
@@ -89,60 +149,59 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements I
             }
         });
         mBinding.horizontalRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        mHomeHorizontalAdapter.setOnItemClickListener((adapter, view, position) -> showUI(position,view));
+        mHomeHorizontalAdapter.setOnItemClickListener((adapter, view, position) -> showUI(position, view));
         mBinding.horizontalRecyclerView.setAdapter(mHomeHorizontalAdapter);
     }
 
-    private void showUI(int position,View view) {
-        if(this.view==null){
-            this.view=view;
+    private void showUI(int position, View view) {
+        if (this.view == null) {
+            this.view = view;
         }
-        if(this.view==view){
+        if (this.view == view) {
             view.setBackgroundColor(getResources().getColor(R.color.purple_700));
-        }
-        else{
+        } else {
             this.view.setBackgroundColor(getResources().getColor(R.color.white));
             view.setBackgroundColor(getResources().getColor(R.color.purple_700));
-            this.view=view;
+            this.view = view;
         }
-        if(this.view!=view){
+        if (this.view != view) {
             this.view.setBackgroundColor(getResources().getColor(R.color.white));
-            this.view=view;
+            this.view = view;
         }
         if (position == 0) {
             view.setBackgroundColor(getResources().getColor(R.color.purple_700));
             mHomePresenter.loadFoodsData();
-            this.position=0;
+            this.position = 0;
         }
         if (position == 1) {
             view.setBackgroundColor(getResources().getColor(R.color.purple_700));
             mHomePresenter.loadChaoShangInfo();
-            this.position=1;
+            this.position = 1;
         }
         if (position == 2) {
             view.setBackgroundColor(getResources().getColor(R.color.purple_700));
             mHomePresenter.loadHuNanInfo();
-            this.position=2;
+            this.position = 2;
         }
         if (position == 3) {
             view.setBackgroundColor(getResources().getColor(R.color.purple_700));
             mHomePresenter.loadTaiGuoInfo();
-            this.position=3;
+            this.position = 3;
         }
         if (position == 4) {
             view.setBackgroundColor(getResources().getColor(R.color.purple_700));
             mHomePresenter.loadGuangDongInfo();
-            this.position=4;
+            this.position = 4;
         }
         if (position == 5) {
             view.setBackgroundColor(getResources().getColor(R.color.purple_700));
             mHomePresenter.loadNaiChaInfo();
-            this.position=5;
+            this.position = 5;
         }
         if (position == 6) {
             view.setBackgroundColor(getResources().getColor(R.color.purple_700));
             mHomePresenter.loadRiChangInfo();
-            this.position=6;
+            this.position = 6;
         }
     }
 
