@@ -1,8 +1,12 @@
 package com.order.food.fragment;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.order.food.AboutActivity;
@@ -59,5 +63,12 @@ public class MineFragment extends BaseFragment<FragmentMineBinding> {
         if (resultCode == 2000 && getActivity() != null) {
             getActivity().finish();
         }
+    }
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view=super.onCreateView(inflater, container, savedInstanceState);
+        Utils.loadImage("https://pic.616pic.com/ys_bnew_img/00/22/88/n8kVMH8Lg4.jpg",mBinding.imageIcon);
+        return view;
     }
 }

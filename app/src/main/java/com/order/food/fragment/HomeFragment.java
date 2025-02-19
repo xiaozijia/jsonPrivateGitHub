@@ -24,6 +24,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements I
 
     private HomeListAdapter mHomeListAdapter;
     private HomePresenter mHomePresenter;
+    private static  HomeFragment homeFragment;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

@@ -60,4 +60,5 @@
     <dimen name="size_58dp">58dp</dimen>
     <dimen name="size_59dp">59dp</dimen>
     <dimen name="size_60dp">60dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>
