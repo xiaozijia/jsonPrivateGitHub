@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.order.food.AboutActivity;
+import com.order.food.AddressListActivity;
+import com.order.food.LoginActivity;
 import com.order.food.PictureChooseActivity;
 import com.order.food.UpdatePwdActivity;
 import com.order.food.base.BaseFragment;
@@ -35,6 +37,8 @@ public class MineFragment extends BaseFragment<FragmentMineBinding> {
         mBinding.imageIcon.setOnClickListener(v -> startActivity(new Intent(getActivity(), PictureChooseActivity.class)));
         mBinding.about.setOnClickListener(view -> startActivityForResult(new Intent(getActivity(), AboutActivity.class), 2000));
         mBinding.edit.setOnClickListener(view -> startActivityForResult(new Intent(getActivity(), UpdatePwdActivity.class), 2000));
+        mBinding.exit.setOnClickListener(view->startActivity(new Intent(getActivity(), LoginActivity.class)));
+        mBinding.adderss.setOnClickListener(view->startActivity(new Intent(getActivity(), AddressListActivity.class)));
     }
 
     @Override

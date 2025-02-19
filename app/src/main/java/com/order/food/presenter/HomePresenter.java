@@ -114,14 +114,14 @@ public class HomePresenter {
                 if (response.isSuccessful() && response.body() != null) {
                     mView.updateData(response.body());
                 } else {
-                    mView.showError("请检查您的网络设置");
+                    mView.showError("国内流量可能不支持浏览");
                 }
             }
 
             @Override
             public void onFailure(Call<List<FoodsInfo>> call, Throwable t) {
                 mView.hideLoading();
-                mView.showError("请检查您的网络设置");
+                mView.showError("国内流量可能不支持浏览");
             }
         });
     }
@@ -135,14 +135,14 @@ public class HomePresenter {
                 if (response.isSuccessful() && response.body() != null) {
                     mView.updateData(response.body());
                 } else {
-                    mView.showError("请检查您的网络设置");
+                    mView.showError("国内流量可能不支持浏览");
                 }
             }
 
             @Override
             public void onFailure(Call<List<FoodsInfo>> call, Throwable t) {
                 mView.hideLoading();
-                mView.showError("请检查您的网络设置");
+                mView.showError("国内流量可能不支持浏览");
             }
         });
     }
@@ -156,14 +156,14 @@ public class HomePresenter {
                 if (response.isSuccessful() && response.body() != null) {
                     mView.updateData(response.body());
                 } else {
-                    mView.showError("请检查您的网络设置");
+                    mView.showError("国内流量可能不支持浏览");
                 }
             }
 
             @Override
             public void onFailure(Call<List<FoodsInfo>> call, Throwable t) {
                 mView.hideLoading();
-                mView.showError("请检查您的网络设置");
+                mView.showError("国内流量可能不支持浏览");
             }
         });
     }
@@ -177,14 +177,14 @@ public class HomePresenter {
                 if (response.isSuccessful() && response.body() != null) {
                     mView.updateTitleContent(response.body());
                 } else {
-                    mView.showError("请检查您的网络设置");
+                    mView.showError("国内流量可能不支持浏览");
                 }
             }
 
             @Override
             public void onFailure(Call<List<FoodsInfo>> call, Throwable t) {
                 mView.hideLoading();
-                mView.showError("请检查您的网络设置");
+                mView.showError("国内流量可能不支持浏览");
             }
         });
     }

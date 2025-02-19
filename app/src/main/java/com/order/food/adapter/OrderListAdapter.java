@@ -22,7 +22,11 @@ public class OrderListAdapter extends BaseQuickAdapter<OrderInfo, BaseViewHolder
         baseViewHolder.setText(R.id.mobile, "手机号：" + orderInfo.getMobile() + "");
         baseViewHolder.setText(R.id.address, "配送地址：" + orderInfo.getAddress() + "");
         baseViewHolder.setText(R.id.goodsPrice,   orderInfo.getPrice()*orderInfo.getFood_num() + "");
-        baseViewHolder.setText(R.id.title, orderInfo.getTitle());
+        String title = orderInfo.getTitle();
+        if (title.length() > 5) {
+            title = title.substring(0, 5) + "...";
+        }
+        baseViewHolder.setText(R.id.title, title);
         baseViewHolder.setText(R.id.detail, orderInfo.getDetail());
         Utils.loadImage(orderInfo.getImage(), baseViewHolder.getView(R.id.image));
 

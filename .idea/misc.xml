@@ -5,14 +5,20 @@
       <map>
         <entry key="..\:/Users/22971/.gradle/caches/transforms-3/b43974d9512098ca7b634bda7f30babd/transformed/jetified-pictureselector-v3.10.7/res/drawable/ps_image_placeholder.xml" value="0.1" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/drawable/btn_bg.xml" value="0.3365" />
+        <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/drawable/button_background.xml" value="0.1" />
+        <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/drawable/button_background_selector.xml" value="0.1" />
+        <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/drawable/custom_selector.xml" value="0.1" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/drawable/et_bg.xml" value="0.251" />
+        <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/drawable/ic_add.xml" value="0.242" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/drawable/ic_baseline_reorder_24.xml" value="0.121" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/drawable/ic_baseline_shopping_cart_24.xml" value="0.121" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/drawable/ic_baseline_supervisor_account_24.xml" value="0.1" />
+        <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/drawable/ic_clear_all.xml" value="0.231" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/drawable/login_bg.xml" value="0.1" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/drawable/tv_shape.xml" value="0.1" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/activity_about.xml" value="0.18489583333333334" />
+        <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/activity_address_list.xml" value="0.2834544677212484" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/activity_foods_details.xml" value="0.18489583333333334" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/activity_list_item.xml" value="0.1" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/activity_login.xml" value="0.1" />
@@ -20,14 +26,18 @@
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/activity_picture_choose.xml" value="0.1" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/activity_register.xml" value="0.18489583333333334" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/activity_update_pwd.xml" value="0.12664640324214793" />
-        <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/car_list_item.xml" value="0.1452152110321772" />
+        <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/address_item.xml" value="0.28430953398888414" />
+        <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/car_list_item.xml" value="0.33" />
+        <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/dialog_input.xml" value="0.2261650277896537" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/empty_layout.xml" value="0.18489583333333334" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/fragment_car.xml" value="0.18489583333333334" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/fragment_horizental_home.xml" value="0.20436083796494228" />
+        <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/fragment_hotizental_data_list.xml" value="0.13852904304220642" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/fragment_mine.xml" value="0.15" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/fragment_order.xml" value="0.1" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/home_list_item.xml" value="0.18489583333333334" />
+        <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/list_item_address.xml" value="0.2834544677212484" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/order_list_item.xml" value="0.18489583333333334" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/layout/pay_dialog.xml" value="0.18489583333333334" />
         <entry key="..\:/Users/22971/Desktop/meiweishunjian/app/src/main/res/menu/navigation.xml" value="0.18489583333333334" />

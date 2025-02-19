@@ -20,14 +20,16 @@
         android:layout_height="180dp"
         android:gravity="center"
         android:orientation="vertical">
+
         <androidx.cardview.widget.CardView
             android:layout_width="100dp"
             android:layout_height="100dp"
             app:cardCornerRadius="40dp">
+
             <ImageButton
+                android:id="@+id/imageIcon"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/imageIcon"
                 android:src="@mipmap/yonghu" />
 
         </androidx.cardview.widget.CardView>
@@ -42,6 +44,7 @@
             android:textSize="20sp" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="5dp"
@@ -59,10 +62,21 @@
         android:background="#f5f5f5" />
 
     <com.allen.library.SuperTextView
+        android:id="@+id/adderss"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:sLeftTextString="配送地址列表" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="#f5f5f5" />
+
+    <com.allen.library.SuperTextView
         android:id="@+id/about"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="200dp"
         app:sLeftTextString="关于我们" />
 
 

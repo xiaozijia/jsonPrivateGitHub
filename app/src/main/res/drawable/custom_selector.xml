@@ -1,0 +1,9 @@
+<!-- res/drawable/custom_selector.xml -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 当视图被选中时的状态 -->
+    <item android:state_selected="true" android:drawable="@color/purple_700" />
+    <!-- 当视图被按下（点击）时的状态 -->
+    <item android:state_pressed="true" android:drawable="@color/purple_700" />
+    <!-- 默认状态 -->
+    <item android:drawable="@color/white" />
+</selector>

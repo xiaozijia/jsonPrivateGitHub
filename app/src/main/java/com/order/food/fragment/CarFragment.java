@@ -1,25 +1,38 @@
 package com.order.food.fragment;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.order.food.MainActivity;
 import com.order.food.R;
 import com.order.food.adapter.CarListAdapter;
 import com.order.food.base.BaseFragment;
+import com.order.food.dao.AddressDao;
 import com.order.food.dao.CarDao;
 import com.order.food.dao.OrderDao;
 import com.order.food.databinding.FragmentCarBinding;
 import com.order.food.entity.CarInfo;
+import com.order.food.entity.PictureInfo;
 import com.order.food.entity.UserInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -29,6 +42,11 @@ public class CarFragment extends BaseFragment<FragmentCarBinding> {
     private int total;
     private String pay_method = "微信";
     private OrderDao mOrderDao;
+    private AddressDao mAddressDao;
+    private List<String> allAddresses;
+    private ArrayAdapter<String> adapter;
+    private  ListView addressListView;
+
 
     @Override
     protected FragmentCarBinding getViewBinding() {
@@ -99,6 +117,40 @@ public class CarFragment extends BaseFragment<FragmentCarBinding> {
                     RadioGroup radioGroup = rootView.findViewById(R.id.radioGroup);
                     TextView tv_total = rootView.findViewById(R.id.total);
                     EditText et_address = rootView.findViewById(R.id.address);
+                     addressListView=rootView.findViewById(R.id.addressListView);
+                    mAddressDao = new AddressDao(getActivity());
+
+                    // 获取所有本地地址
+                    allAddresses = mAddressDao.queryAddressesByMobile(PictureInfo.getMobile()); // 这里的手机号根据实际情况修改
+
+                    // 初始化适配器
+                    adapter = new ArrayAdapter<>(getActivity(), R.layout.list_item_address);
+                    addressListView.setAdapter(adapter);
+                    et_address.addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                        }
+                        @Override
+                        public void onTextChanged(CharSequence s, int start, int before, int count) {
+                            filterAddresses(s.toString());
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable s) {
+                        }
+                    });
+                    addressListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            // 获取点击的地址
+                            String selectedAddress = (String) parent.getItemAtPosition(position);
+                            // 将选中的地址填充到输入框中
+                            et_address.setText(selectedAddress);
+                            // 隐藏地址列表
+                            addressListView.setVisibility(View.GONE);
+                        }
+                    });
+
                     tv_total.setText(total + ".00");
                     radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                         @Override
@@ -125,16 +177,16 @@ public class CarFragment extends BaseFragment<FragmentCarBinding> {
                     builder.setPositiveButton("支付", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int index) {
-
                             String address = et_address.getText().toString();
                             if (TextUtils.isEmpty(address)) {
                                 showToast("配置地址不能为空~~");
                             } else {
                                 //生成订单
+                                mAddressDao.insert(PictureInfo.getMobile(),address);
                                 if (mOrderDao == null) {
                                     mOrderDao = new OrderDao(getActivity());
                                 }
-
+                                mAddressDao.insert(PictureInfo.getMobile(),address);
                                 for (int i = 0; i < mCarListAdapter.getData().size(); i++) {
                                     CarInfo carInfo = mCarListAdapter.getData().get(i);
                                     int row = mOrderDao.insert(carInfo.getMobile(), carInfo.getTitle(), carInfo.getPrice(), carInfo.getImage(), carInfo.getFood_num(), carInfo.getDetail(), pay_method, address);
@@ -155,6 +207,26 @@ public class CarFragment extends BaseFragment<FragmentCarBinding> {
                 }
             }
         });
+    }
+
+    private void filterAddresses(String keyword) {
+        List<String> filteredAddresses = new ArrayList<>();
+        for (String address : allAddresses) {
+            if (address.contains(keyword)) {
+                filteredAddresses.add(address);
+            }
+        }
+
+        if (!filteredAddresses.isEmpty()) {
+            // 更新适配器的数据
+            adapter.clear();
+            adapter.addAll(filteredAddresses);
+            // 显示地址列表
+            addressListView.setVisibility(View.VISIBLE);
+        } else {
+            // 没有匹配结果，隐藏地址列表
+            addressListView.setVisibility(View.GONE);
+        }
     }
 
     @Override

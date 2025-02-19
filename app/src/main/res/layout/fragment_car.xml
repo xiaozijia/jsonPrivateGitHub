@@ -19,7 +19,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/below_item"
         android:layout_below="@id/toolbar"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/car_list_item" />
@@ -28,6 +29,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:id="@+id/below_item"
         android:layout_alignParentBottom="true"
         android:background="@color/purple_700"
         android:gravity="center_vertical|right">

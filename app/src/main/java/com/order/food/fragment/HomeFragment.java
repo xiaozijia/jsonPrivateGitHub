@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.order.food.FoodsDetailsActivity;
+import com.order.food.R;
 import com.order.food.adapter.HomeHorizontalAdapter;
 import com.order.food.presenter.HomePresenter;
 import com.order.food.presenter.IHomeView;
@@ -27,6 +28,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements I
     private HomePresenter mHomePresenter;
     private HomeHorizontalAdapter mHomeHorizontalAdapter;
     private int position = 0;
+    private View view;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -87,36 +89,58 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements I
             }
         });
         mBinding.horizontalRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        mHomeHorizontalAdapter.setOnItemClickListener((adapter, view, position) -> showUI(position));
+        mHomeHorizontalAdapter.setOnItemClickListener((adapter, view, position) -> showUI(position,view));
         mBinding.horizontalRecyclerView.setAdapter(mHomeHorizontalAdapter);
     }
 
-    private void showUI(int position) {
+    private void showUI(int position,View view) {
+        if(this.view==null){
+            this.view=view;
+        }
+        if(this.view==view){
+            view.setBackgroundColor(getResources().getColor(R.color.purple_700));
+        }
+        else{
+            this.view.setBackgroundColor(getResources().getColor(R.color.white));
+            view.setBackgroundColor(getResources().getColor(R.color.purple_700));
+            this.view=view;
+        }
+        if(this.view!=view){
+            this.view.setBackgroundColor(getResources().getColor(R.color.white));
+            this.view=view;
+        }
         if (position == 0) {
+            view.setBackgroundColor(getResources().getColor(R.color.purple_700));
             mHomePresenter.loadFoodsData();
             this.position=0;
         }
         if (position == 1) {
+            view.setBackgroundColor(getResources().getColor(R.color.purple_700));
             mHomePresenter.loadChaoShangInfo();
             this.position=1;
         }
         if (position == 2) {
+            view.setBackgroundColor(getResources().getColor(R.color.purple_700));
             mHomePresenter.loadHuNanInfo();
             this.position=2;
         }
         if (position == 3) {
+            view.setBackgroundColor(getResources().getColor(R.color.purple_700));
             mHomePresenter.loadTaiGuoInfo();
             this.position=3;
         }
         if (position == 4) {
+            view.setBackgroundColor(getResources().getColor(R.color.purple_700));
             mHomePresenter.loadGuangDongInfo();
             this.position=4;
         }
         if (position == 5) {
+            view.setBackgroundColor(getResources().getColor(R.color.purple_700));
             mHomePresenter.loadNaiChaInfo();
             this.position=5;
         }
         if (position == 6) {
+            view.setBackgroundColor(getResources().getColor(R.color.purple_700));
             mHomePresenter.loadRiChangInfo();
             this.position=6;
         }
