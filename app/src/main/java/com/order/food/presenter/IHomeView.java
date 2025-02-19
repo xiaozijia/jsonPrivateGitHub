@@ -9,4 +9,5 @@ public interface IHomeView {
     void hideLoading();
     void updateData(List<FoodsInfo> foodsInfoList);
     void showError(String error);
+    void updateTitleContent(List<FoodsInfo> foodsInfoList);
 }

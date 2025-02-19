@@ -48,7 +48,7 @@ public class CarDao {
 
 
     @SuppressLint("Range")
-    public List<CarInfo> queryCarList(String mobile) {
+        public List<CarInfo> queryCarList(String mobile) {
         List<CarInfo> list = new ArrayList<>();
         SQLiteDatabase db = mCarDb.getReadableDatabase();
         String sql = "select _id,mobile,title,price,image,food_num,detail from car_table where mobile=?";

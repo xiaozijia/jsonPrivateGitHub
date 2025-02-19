@@ -22,7 +22,6 @@ public class DataService {
             Gson gson = new Gson();
             Type listType = new TypeToken<List<FoodsInfo>>() {}.getType();
             List<FoodsInfo> foodsInfoList = gson.fromJson(json, listType);
-            Log.d("xiaozijiahaoshuai", "getHomeListData: "+foodsInfoList.get(0).getContent());
             // 输出解析结果进行验证
             if (foodsInfoList != null && !foodsInfoList.isEmpty()) {
                return foodsInfoList;

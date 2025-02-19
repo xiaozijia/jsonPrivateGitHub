@@ -10,8 +10,8 @@ import com.order.food.entity.FoodsInfo;
 import com.order.food.utils.Utils;
 
 
-public class HomeListAdapter extends BaseQuickAdapter<FoodsInfo, BaseViewHolder> {
-    public HomeListAdapter() {
+public class HomeVerticalAdapter extends BaseQuickAdapter<FoodsInfo, BaseViewHolder> {
+    public HomeVerticalAdapter() {
         super(R.layout.home_list_item);
     }
 
