@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:background="@color/purple_700"
         app:navigationIcon="@mipmap/back"
-        app:title="关于我们"
+        app:title="关于制作者"
         app:titleTextColor="@color/white" />
 
 
@@ -47,7 +47,7 @@
         android:textColor="@color/black"
         android:padding="16dp"
         android:textSize="26dp"
-        android:text="制作人：萧子佳\n\n单位：中山大学\n\n班级：计算机一班\n\n学号：保密\n\n联系电话：4003123123" />
+        android:text="制作人：萧子佳\n\n单位：广东外语外贸大学南国商\n\n班级：计算机一班\n\n学号：2140664152\n\n联系电话：19102744074" />
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

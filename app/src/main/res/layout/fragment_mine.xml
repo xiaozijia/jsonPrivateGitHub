@@ -77,7 +77,7 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginBottom="200dp"
-        app:sLeftTextString="关于我们" />
+        app:sLeftTextString="关于制作者" />
 
 
     <androidx.cardview.widget.CardView
