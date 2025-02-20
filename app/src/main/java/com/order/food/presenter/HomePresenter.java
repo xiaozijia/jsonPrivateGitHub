@@ -37,7 +37,7 @@ public class HomePresenter {
             @Override
             public void onFailure(Call<List<FoodsInfo>> call, Throwable t) {
                 mView.hideLoading();
-                mView.showError(t.toString());
+                mView.showError("国内流量可能不支持浏览");
             }
         });
     }
