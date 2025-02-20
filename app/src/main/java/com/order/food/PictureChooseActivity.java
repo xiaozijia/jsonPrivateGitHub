@@ -72,7 +72,6 @@ public class PictureChooseActivity extends BaseActivity<ActivityPictureChooseBin
         mProductListAdapter.setReBackToActivityListener(this);
         mProductListAdapter.setList(null);
         mBinding.recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
-        // 获取边距值，这里假设在 dimens.xml 中定义了 item_spacing
         int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.size_6dp);
         mBinding.recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
             @Override
