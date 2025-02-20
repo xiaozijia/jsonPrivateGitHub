@@ -73,10 +73,37 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements I
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onNetworkConnected(NetworkMonitor.NetworkConnectedEvent event) {
         // 网络已连接，加载数据
-        mHomePresenter.loadCaiNameInfo();
-        mHomePresenter.loadFoodsData();
-        position=0;
-        this.view=null;
+        if(mBinding.horizontalRecyclerView.getAdapter().getItemCount()==0){
+            mHomePresenter.loadCaiNameInfo();
+        }
+        if (position == 0) {
+            mHomePresenter.loadFoodsData();
+            return;
+        }
+        if (position == 1) {
+            mHomePresenter.loadChaoShangInfo();
+            return;
+        }
+        if (position == 2) {
+            mHomePresenter.loadHuNanInfo();
+            return;
+        }
+        if (position == 3) {
+            mHomePresenter.loadTaiGuoInfo();
+            return;
+        }
+        if (position == 4) {
+            mHomePresenter.loadGuangDongInfo();
+            return;
+        }
+        if (position == 5) {
+            mHomePresenter.loadNaiChaInfo();
+            return;
+        }
+        if (position == 6) {
+            mHomePresenter.loadRiChangInfo();
+            return;
+        }
     }
 
     @Override
@@ -98,6 +125,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements I
                 if (mBinding.horizontalRecyclerView.getAdapter().getItemCount() == 0) {
                     mHomePresenter.loadCaiNameInfo();
                 }
+                return;
 
             }
             if (position == 1) {
@@ -105,36 +133,42 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements I
                 if (mBinding.horizontalRecyclerView.getAdapter().getItemCount() == 0) {
                     mHomePresenter.loadCaiNameInfo();
                 }
+                return;
             }
             if (position == 2) {
                 mHomePresenter.loadHuNanInfo();
                 if (mBinding.horizontalRecyclerView.getAdapter().getItemCount() == 0) {
                     mHomePresenter.loadCaiNameInfo();
                 }
+                return;
             }
             if (position == 3) {
                 mHomePresenter.loadTaiGuoInfo();
                 if (mBinding.horizontalRecyclerView.getAdapter().getItemCount() == 0) {
                     mHomePresenter.loadCaiNameInfo();
                 }
+                return;
             }
             if (position == 4) {
                 mHomePresenter.loadGuangDongInfo();
                 if (mBinding.horizontalRecyclerView.getAdapter().getItemCount() == 0) {
                     mHomePresenter.loadCaiNameInfo();
                 }
+                return;
             }
             if (position == 5) {
                 mHomePresenter.loadNaiChaInfo();
                 if (mBinding.horizontalRecyclerView.getAdapter().getItemCount() == 0) {
                     mHomePresenter.loadCaiNameInfo();
                 }
+                return;
             }
             if (position == 6) {
                 mHomePresenter.loadRiChangInfo();
                 if (mBinding.horizontalRecyclerView.getAdapter().getItemCount() == 0) {
                     mHomePresenter.loadCaiNameInfo();
                 }
+                return;
             }
             mBinding.swipeRefreshLayout.setRefreshing(false);
         });

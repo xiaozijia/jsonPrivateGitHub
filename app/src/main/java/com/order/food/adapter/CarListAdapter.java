@@ -25,8 +25,6 @@ public class CarListAdapter extends BaseQuickAdapter<CarInfo, BaseViewHolder> {
         baseViewHolder.setText(R.id.price,carInfo.getPrice()+"");
         baseViewHolder.setText(R.id.food_num,carInfo.getFood_num()+"");
         baseViewHolder.setText(R.id.detail,carInfo.getDetail());
-
-
         baseViewHolder.getView(R.id.del).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
