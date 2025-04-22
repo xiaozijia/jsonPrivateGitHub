@@ -4,6 +4,7 @@
         "title": "经典珍珠奶茶",
         "price": 15,
         "image": "2",
+         "videoUri":"",
         "detail": "如需定制甜度或冰度，请下单备注。",
         "imageUrl": "https://tse4-mm.cn.bing.net/th/id/OIP-C.BmGTzZe-HBw1sB_PZHYCYgHaEK?rs=1&pid=ImgDetMain.jpg",
         "content": "经典珍珠奶茶作为奶茶界的元老，承载着无数人的美好回忆。Q弹圆润的黑珍珠每日现煮，嚼劲十足，在齿间欢快跳跃。丝滑的奶茶底由优质茶叶与新鲜牛奶精心调配，茶韵悠长，奶香醇厚，二者完美交融。每一口既能品尝到珍珠的软糯弹牙，又能尽享奶茶的香浓丝滑，无论是逛街小憩还是工作解乏，它都是绝佳伴侣。"
@@ -13,6 +14,7 @@
         "title": "广式烧腊拼盘",
         "price": 68,
         "image": "3",
+            "videoUri":"",
         "detail": "可选择肥瘦比例，需提前预订。",
         "imageUrl": "https://tse4-mm.cn.bing.net/th/id/OIP-C.ygUrcHU1imbCbhl_xrI3gQHaE-?w=284&h=190&c=7&r=0&o=5&dpr=1.1&pid=1.7.jpg",
         "content": "广式烧腊拼盘集齐烧鸭、叉烧、烧肉等多种烧腊精华。烧鸭皮脆肉嫩，色泽红亮，皮下脂肪融化后形成一层透亮的油脂，入口香脆多汁；叉烧选用猪梅肉，以秘制酱汁腌制后慢火烤制，甜中带鲜，肉质软嫩多汁，焦香的外皮与软嫩的内里形成绝妙对比；烧肉经盐焗烤制，猪皮爆脆如薯片，肉质紧实咸香，肥而不腻。每一种都经过老师傅精心把控火候，香气四溢，是广东餐桌上的经典美味，无论是家庭聚会还是宴请宾客，都能大放异彩。"
@@ -20,6 +22,7 @@
     {
         "id": 3,
         "title": "虾饺皇",
+            "videoUri":"",
         "price": 38,
         "image": "4",
         "detail": "现点现做，口感更佳。",
@@ -29,6 +32,7 @@
     {
         "id": 4,
         "title": "叉烧包",
+            "videoUri":"",
         "price": 28,
         "image": "5",
         "detail": "甜度适中，老少皆宜。",
@@ -38,6 +42,7 @@
     {
         "id": 5,
         "title": "萝卜糕",
+            "videoUri":"",
         "price": 22,
         "image": "6",
         "detail": "可选择煎制程度。",
@@ -48,6 +53,7 @@
         "id": 6,
         "title": "艇仔粥",
         "price": 25,
+            "videoUri":"",
         "image": "7",
         "detail": "粥底浓稠，配料丰富。",
         "imageUrl": "https://ts1.cn.mm.bing.net/th/id/R-C.29b6b656aea3009fb7a60795cd74c3ca?rik=ETZZ6jkg95f7%2bA&riu=http%3a%2f%2fn.sinaimg.cn%2fsinacn%2fw600h355%2f20180205%2f0782-fyrhcqy9225410.jpg&ehk=gRYrNa5k%2b9QOLlZ7DmiEuFLOCRWMuDsifdCvKXVQjNU%3d&risl=&pid=ImgRaw&r=0.jpg",
@@ -56,6 +62,7 @@
     {
         "id": 7,
         "title": "双皮奶",
+            "videoUri":"",
         "price": 18,
         "image": "8",
         "detail": "冷藏后口感更佳。",
@@ -64,6 +71,7 @@
     },
     {
         "id": 8,
+            "videoUri":"",
         "title": "肠粉",
         "price": 20,
         "image": "9",
@@ -74,6 +82,7 @@
     {
         "id": 9,
         "title": "白切鸡",
+            "videoUri":"",
         "price": 58,
         "image": "10",
         "detail": "选用走地鸡，肉质鲜嫩。",
@@ -82,6 +91,7 @@
     },
     {
         "id": 10,
+            "videoUri":"",
         "title": "煲仔饭",
         "price": 35,
         "image": "11",
@@ -91,6 +101,7 @@
     },
     {
         "id": 11,
+            "videoUri":"",
         "title": "马拉糕",
         "price": 22,
         "image": "12",
@@ -101,6 +112,7 @@
     {
         "id": 12,
         "title": "烧鹅",
+            "videoUri":"",
         "price": 88,
         "image": "13",
         "detail": "精选黑棕鹅，皮脆肉嫩配酸梅酱。",
@@ -110,6 +122,7 @@
     {
         "id": 13,
         "title": "干炒牛河",
+            "videoUri":"",
         "price": 38,
         "image": "14",
         "detail": "猛火快炒，锅气十足，可加鸡蛋。",
@@ -119,6 +132,7 @@
     {
         "id": 14,
         "title": "豉汁蒸排骨",
+            "videoUri":"",
         "price": 32,
         "image": "15",
         "detail": "肋排腌制入味，搭配黑豆豉蒸制。",
@@ -129,6 +143,7 @@
         "id": 15,
         "title": "云吞面",
         "price": 25,
+            "videoUri":"",
         "image": "16",
         "detail": "鲜虾云吞配竹升面，汤头鲜甜。",
         "imageUrl": "https://img2.baidu.com/it/u=236556691,4279499794&fm=253&fmt=auto&app=120&f=JPEG?w=846&h=800.jpg",
@@ -138,6 +153,7 @@
         "id": 16,
         "title": "豉椒炒蚬",
         "price": 48,
+            "videoUri":"",
         "image": "17",
         "detail": "新鲜黄沙蚬，辣度可选。",
         "imageUrl": "https://img1.baidu.com/it/u=3504320883,79046474&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=668.jpg",
@@ -147,6 +163,7 @@
         "id": 17,
         "title": "姜撞奶",
         "price": 20,
+            "videoUri":"",
         "image": "18",
         "detail": "现磨姜汁+水牛奶，热撞成膏。",
         "imageUrl": "https://img2.baidu.com/it/u=1987016487,2977052356&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=667.jpg",
@@ -154,6 +171,7 @@
     },
     {
         "id": 18,
+            "videoUri":"",
         "title": "清蒸石斑鱼",
         "price": 128,
         "image": "19",
@@ -164,6 +182,7 @@
     {
         "id": 19,
         "title": "蜜汁叉烧",
+            "videoUri":"",
         "price": 58,
         "image": "20",
         "detail": "半肥瘦梅肉，秘酱腌制炭烤。",
@@ -173,6 +192,7 @@
     {
         "id": 20,
         "title": "菜心炒牛肉",
+            "videoUri":"",
         "price": 35,
         "image": "21",
         "detail": "鲜嫩菜心配牛里脊，火候讲究。",
@@ -182,6 +202,7 @@
     {
         "id": 21,
         "title": "榴莲忘返",
+            "videoUri":"",
         "price": 38,
         "image": "22",
         "detail": "新鲜榴莲肉+西米露+椰奶。",
@@ -190,6 +211,7 @@
     },
     {
         "id": 22,
+            "videoUri":"",
         "title": "腊味萝卜糕",
         "price": 25,
         "image": "23",
@@ -200,6 +222,7 @@
     {
         "id": 23,
         "title": "白灼基围虾",
+            "videoUri":"",
         "price": 78,
         "image": "24",
         "detail": "鲜活基围虾，配姜葱酱油。",
@@ -208,6 +231,7 @@
     },
     {
         "id": 24,
+            "videoUri":"",
         "title": "杨枝甘露",
         "price": 32,
         "image": "25",
@@ -217,6 +241,7 @@
     },
     {
         "id": 25,
+            "videoUri":"",
         "title": "豉油鸡",
         "price": 68,
         "image": "26",
@@ -226,6 +251,7 @@
     },
     {
         "id": 26,
+            "videoUri":"",
         "title": "牛肉丸汤",
         "price": 35,
         "image": "27",
@@ -235,6 +261,7 @@
     },
     {
         "id": 27,
+            "videoUri":"",
         "title": "椰汁香芋西米露",
         "price": 28,
         "image": "28",
@@ -245,6 +272,7 @@
     {
         "id": 28,
         "title": "椒盐皮皮虾",
+            "videoUri":"",
         "price": 68,
         "image": "29",
         "detail": "开边油炸，椒盐调味，酥脆入味。",
@@ -254,6 +282,7 @@
     {
         "id": 29,
         "title": "叉烧酥",
+            "videoUri":"",
         "price": 32,
         "image": "30",
         "detail": "千层酥皮裹叉烧馅，酥香可口。",
@@ -263,6 +292,7 @@
     {
         "id": 30,
         "title": "老火靓汤",
+            "videoUri":"",
         "price": 48,
         "image": "31",
         "detail": "每日例汤，如莲藕猪骨、海底椰炖鸡汤。",
@@ -272,6 +302,7 @@
       {
         "id": 31,
         "title": "白灼菜心",
+              "videoUri":"",
         "price": 28,
         "image": "32",
         "detail": "选用增城迟菜心，清甜无渣。",
@@ -281,6 +312,7 @@
     {
         "id": 32,
         "title": "紫砂佛跳墙",
+            "videoUri":"",
         "price": 198,
         "image": "33",
         "detail": "精选12种山珍海味，古法煨制8小时。",
@@ -290,6 +322,7 @@
     {
         "id": 33,
         "title": "龙虎凤窝",
+            "videoUri":"",
         "price": 128,
         "image": "34",
         "detail": "蛇、猫、鸡三味同煲，祛风除湿。",
@@ -299,6 +332,7 @@
     {
         "id": 34,
         "title": "清蒸石斑鱼",
+            "videoUri":"",
         "price": 168,
         "image": "35",
         "detail": "鲜活东星斑，葱丝豉油提鲜。",
@@ -308,6 +342,7 @@
     {
         "id": 35,
         "title": "腊味煲仔饭",
+            "videoUri":"",
         "price": 48,
         "image": "36",
         "detail": "丝苗米+广式腊肠，锅巴焦香。",
@@ -318,6 +353,7 @@
         "id": 36,
         "title": "豉椒炒蚬",
         "price": 58,
+            "videoUri":"",
         "image": "37",
         "detail": "珠江口黄沙蚬，辣度可选。",
         "imageUrl": "https://img1.baidu.com/it/u=3504320883,79046474&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=668.jpg",
@@ -326,6 +362,7 @@
     {
         "id": 37,
         "title": "姜撞奶",
+            "videoUri":"",
         "price": 22,
         "image": "38",
         "detail": "现磨姜汁+水牛奶，热撞成膏。",
@@ -335,6 +372,7 @@
     {
         "id": 38,
         "title": "椒盐皮皮虾",
+            "videoUri":"",
         "price": 88,
         "image": "39",
         "detail": "开边油炸，椒盐调味，酥脆入味。",
@@ -344,6 +382,7 @@
     {
         "id": 39,
         "title": "叉烧酥",
+            "videoUri":"",
         "price": 35,
         "image": "40",
         "detail": "千层酥皮裹叉烧馅，酥香可口。",
@@ -352,6 +391,7 @@
     },
     {
         "id": 40,
+            "videoUri":"",
         "title": "老火靓汤",
         "price": 68,
         "image": "41",
@@ -361,6 +401,7 @@
     },
     {
         "id": 41,
+            "videoUri":"",
         "title": "香芋扣肉",
         "price": 58,
         "image": "42",
@@ -370,6 +411,7 @@
     },
     {
         "id": 42,
+            "videoUri":"",
         "title": "清蒸鱼",
         "price": 98,
         "image": "43",
@@ -379,6 +421,7 @@
     },
     {
         "id": 43,
+            "videoUri":"",
         "title": "蚝仔烙",
         "price": 48,
         "image": "44",
@@ -388,6 +431,7 @@
     },
     {
         "id": 44,
+            "videoUri":"",
         "title": "鲍汁扣鹅掌",
         "price": 128,
         "image": "45",
@@ -397,6 +441,7 @@
     },
     {
         "id": 45,
+            "videoUri":"",
         "title": "生炒骨",
         "price": 42,
         "image": "46",
@@ -406,6 +451,7 @@
     },
     {
         "id": 46,
+            "videoUri":"",
         "title": "菜干咸猪骨汤",
         "price": 58,
         "image": "47",
@@ -415,6 +461,7 @@
     },
     {
         "id": 47,
+            "videoUri":"",
         "title": "蜜汁叉烧",
         "price": 68,
         "image": "48",
@@ -424,6 +471,7 @@
     },
     {
         "id": 48,
+            "videoUri":"",
         "title": "清蒸鸡",
         "price": 78,
         "image": "49",
@@ -433,6 +481,7 @@
     },
     {
         "id": 49,
+            "videoUri":"",
         "title": "豉椒炒花甲",
         "price": 58,
         "image": "50",
@@ -442,6 +491,7 @@
     },
     {
         "id": 50,
+            "videoUri":"",
         "title": "椰汁香芋西米露",
         "price": 32,
         "image": "51",
@@ -451,6 +501,7 @@
     },
     {
         "id": 51,
+            "videoUri":"",
         "title": "清蒸蟹",
         "price": 128,
         "image": "52",
@@ -460,6 +511,7 @@
     },
     {
         "id": 52,
+            "videoUri":"",
         "title": "蜜汁烧排骨",
         "price": 68,
         "image": "53",
@@ -469,6 +521,7 @@
     },
     {
         "id": 53,
+            "videoUri":"",
         "title": "上汤娃娃菜",
         "price": 38,
         "image": "54",
@@ -478,6 +531,7 @@
     },
     {
         "id": 54,
+            "videoUri":"",
         "title": "蒸水蛋",
         "price": 28,
         "image": "55",
@@ -487,6 +541,7 @@
     },
     {
         "id": 55,
+            "videoUri":"",
         "title": "煎酿三宝",
         "price": 48,
         "image": "56",
