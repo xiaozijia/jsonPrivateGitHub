@@ -79,5 +79,157 @@
 "detail": "粥底绵滑，配料丰富。",
 "imageUrl": "https://tse1-mm.cn.bing.net/th/id/OIP-C.Dti08aFJYQdD6tPWUkv6egHaFj?w=256&h=192&c=7&r=0&o=5&dpr=1.1&pid=1.7.jpg",
 "content": "潮汕粥是潮汕地区的传统粥品，粥底绵滑，配料丰富，包括海鲜、肉类、蔬菜等，味道鲜美，营养丰富。"
-}
+},
+  {
+    "id": 11,
+    "title": "红桃粿",
+    "price": 15,
+    "detail": "糯米皮裹花生/萝卜馅，节庆必备",
+    "imageUrl": "https://tse4-mm.cn.bing.net/th/id/OIP-C.8Qv7QZg1yQzJZJ6bL8bL7wHaHa?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "红桃粿是潮汕传统节庆美食，糯米皮包裹花生、萝卜等馅料，形似红桃，寓意吉祥，口感软糯香甜"
+  },
+  {
+    "id": 12,
+    "title": "鼠壳粿",
+    "price": 12,
+    "detail": "鼠曲草糯米皮，甜咸双馅可选",
+    "imageUrl": "https://tse3-mm.cn.bing.net/th/id/OIP-C.6Q5bQz7zZ7bW6Wz7bQz7bWHaFj?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "鼠壳粿以鼠曲草混合糯米制成皮，内馅可甜（芝麻花生）可咸（萝卜虾米），口感软糯清香，带有草木香气"
+  },
+  {
+    "id": 13,
+    "title": "乒乓粿",
+    "price": 10,
+    "detail": "糯米槌打Q弹，佐糖粉或酱料",
+    "imageUrl": "https://tse2-mm.cn.bing.net/th/id/OIP-C.9Q5bQz7zZ7bW6Wz7bQz7bWHaE7?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "乒乓粿由糯米粉蒸熟后槌打至富有弹性，切成小块后可蘸花生糖粉或 savory 酱料，口感柔韧有嚼劲"
+  },
+  {
+    "id": 14,
+    "title": "菜头粿",
+    "price": 12,
+    "detail": "萝卜丝糯米糕，煎制后外脆内软",
+    "imageUrl": "https://tse1-mm.cn.bing.net/th/id/OIP-C.5Q5bQz7zZ7bW6Wz7bQz7bWHaFj?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "菜头粿（萝卜糕）以萝卜丝、糯米粉蒸制而成，切片煎制后外皮焦香，内部软嫩，常搭配辣椒酱食用"
+  },
+  {
+    "id": 15,
+    "title": "栀粽",
+    "price": 8,
+    "detail": "栀子染色糯米粽，蘸白糖清香",
+    "imageUrl": "https://tse4-mm.cn.bing.net/th/id/OIP-C.4Q5bQz7zZ7bW6Wz7bQz7bWHaHa?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "栀粽以糯米混合栀子汁染色蒸制，呈淡黄色，口感黏糯清香，无需馅料，直接蘸白糖食用，是潮汕端午特色"
+  },
+  {
+    "id": 16,
+    "title": "层糕粿",
+    "price": 10,
+    "detail": "米浆多层蒸制，佐菜脯粒豉油",
+    "imageUrl": "https://tse3-mm.cn.bing.net/th/id/OIP-C.3Q5bQz7zZ7bW6Wz7bQz7bWHaFj?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "层糕粿用米浆逐层蒸制而成，每层薄如纸，叠成多层糕体，切小块后淋上豉油，撒菜脯粒，口感软滑咸香"
+  },
+  {
+    "id": 17,
+    "title": "猪肠胀糯米",
+    "price": 25,
+    "detail": "猪肠包裹糯米花生，咸香软糯",
+    "imageUrl": "https://tse2-mm.cn.bing.net/th/id/OIP-C.2Q5bQz7zZ7bW6Wz7bQz7bWHaE7?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "猪肠胀糯米是潮汕经典小吃，猪肠洗净后填入糯米、花生、虾米等馅料，煮熟后切片，咸香入味，口感丰富"
+  },
+  {
+    "id": 18,
+    "title": "隆江猪脚饭",
+    "price": 20,
+    "detail": "卤猪脚肥而不腻，配酸菜米饭",
+    "imageUrl": "https://tse1-mm.cn.bing.net/th/id/OIP-C.1Q5bQz7zZ7bW6Wz7bQz7bWHaFj?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "隆江猪脚饭以卤制猪脚为主料，猪脚皮弹肉嫩，肥而不腻，搭配酸菜、卤蛋和香米饭，是潮汕街头常见快餐"
+  },
+  {
+    "id": 19,
+    "title": "鸭母捻",
+    "price": 15,
+    "detail": "糯米汤圆裹花生馅，形似鸭蛋",
+    "imageUrl": "https://tse4-mm.cn.bing.net/th/id/OIP-C.0Q5bQz7zZ7bW6Wz7bQz7bWHaHa?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "鸭母捻是潮汕特色汤圆，糯米皮包裹花生、芝麻等馅料，形状椭圆如鸭蛋，煮后浮于糖水中，口感软糯香甜"
+  },
+  {
+    "id": 20,
+    "title": "糖葱薄饼",
+    "price": 10,
+    "detail": "薄饼卷糖葱芝麻，酥脆香甜",
+    "imageUrl": "https://tse3-mm.cn.bing.net/th/id/OIP-C.AQ5bQz7zZ7bW6Wz7bQz7bWHaFj?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "糖葱薄饼由薄如纸的面皮包裹糖葱（多孔状麦芽糖）、芝麻、花生碎等，入口酥脆香甜，是潮汕传统街头零食"
+  },
+  {
+    "id": 21,
+    "title": "朥饺",
+    "price": 12,
+    "detail": "猪油糯米饺，咸甜馅料可选",
+    "imageUrl": "https://tse2-mm.cn.bing.net/th/id/OIP-C.BQ5bQz7zZ7bW6Wz7bQz7bWHaE7?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "朥饺以糯米粉加猪油揉成皮，内馅有咸（猪肉、香菇）或甜（花生、椰丝），蒸制后外皮油润发亮，口感软糯"
+  },
+  {
+    "id": 22,
+    "title": "草粿",
+    "price": 5,
+    "detail": "仙草熬制凉粉，加红糖碎冰",
+    "imageUrl": "https://tse1-mm.cn.bing.net/th/id/OIP-C.CQ5bQz7zZ7bW6Wz7bQz7bWHaFj?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "草粿（仙草冻）用仙草熬制后冷却成黑色凉粉，切成小块加红糖或蜂蜜，夏日搭配碎冰食用，清凉解暑"
+  },
+  {
+    "id": 24,
+    "title": "潮汕粿汁",
+    "price": 15,
+    "detail": "米浆烙皮煮汤汁，配卤味豆干",
+    "imageUrl": "https://tse3-mm.cn.bing.net/th/id/OIP-C.ERjL3uN4u5XyfZg3QZ7yqQHaFj?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "潮汕粿汁以米浆烙制的粿皮切成条，煮入猪骨汤中，搭配卤猪脚、豆干、粉肠等，汤汁浓郁，粿皮软滑，是经典的潮汕早餐"
+  },
+  {
+    "id": 25,
+    "title": "炒糕粿",
+    "price": 18,
+    "detail": "粿糕切片爆炒，加鸡蛋腊肠",
+    "imageUrl": "https://tse2-mm.cn.bing.net/th/id/OIP-C.G3kL4Zv3bM9WfZb4yZ8yqQHaE7?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "炒糕粿是将蒸制的糯米糕切片，用猪油爆炒至金黄，加入鸡蛋、腊肠、豆芽等配料，调味后香气扑鼻，口感外焦内糯"
+  },
+  {
+    "id": 26,
+    "title": "潮汕春卷",
+    "price": 10,
+    "detail": "薄面皮裹蔬菜粉丝，炸至酥脆",
+    "imageUrl": "https://tse1-mm.cn.bing.net/th/id/OIP-C.H2mL1uN4u5XyfZg3QZ7yqQHaFj?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "潮汕春卷以超薄面皮包裹胡萝卜、豆芽、粉丝等馅料，炸至外皮金黄酥脆，内馅清爽可口，常搭配甜辣酱食用"
+  },
+  {
+    "id": 27,
+    "title": "豆糕",
+    "price": 8,
+    "detail": "黄豆磨浆蒸制，咸香松软",
+    "imageUrl": "https://tse4-mm.cn.bing.net/th/id/OIP-C.K3nL4Zv3bM9WfZb4yZ8yqQHaHa?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "豆糕（豆干粿）用黄豆磨浆后蒸制而成，质地松软，带有黄豆的清香，可直接切块食用或煎制，是潮汕地区的家常小吃"
+  },
+  {
+    "id": 28,
+    "title": "潮汕虾枣",
+    "price": 22,
+    "detail": "虾肉裹淀粉炸制，外酥里嫩",
+    "imageUrl": "https://tse3-mm.cn.bing.net/th/id/OIP-C.M1mL1uN4u5XyfZg3QZ7yqQHaFj?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "潮汕虾枣是传统筵席菜，鲜虾剁泥混合淀粉搓成枣状，炸至外皮酥脆，内部虾肉鲜嫩多汁，常作为点心或配菜"
+  },
+  {
+    "id": 29,
+    "title": "潮汕粿条汤",
+    "price": 16,
+    "detail": "粿条配猪杂/海鲜，汤头清甜",
+    "imageUrl": "https://tse2-mm.cn.bing.net/th/id/OIP-C.N2nL4Zv3bM9WfZb4yZ8yqQHaE7?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "潮汕粿条汤以爽滑的粿条为主料，搭配猪杂（猪肝、猪心、粉肠）或海鲜（鲜虾、鱿鱼），汤头用猪骨或鱼骨熬制，清甜鲜美"
+  },
+  {
+    "id": 30,
+    "title": "潮汕甜粿",
+    "price": 12,
+    "detail": "红糖糯米糕，蒸煎两相宜",
+    "imageUrl": "https://tse1-mm.cn.bing.net/th/id/OIP-C.P3mL1uN4u5XyfZg3QZ7yqQHaFj?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "甜粿是潮汕节庆必备糕点，用糯米粉加红糖蒸制而成，口感黏糯香甜，可直接蒸热食用，也可切片煎至外皮焦香，搭配花生粉更佳"
+  }
 ]
