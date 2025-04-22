@@ -231,5 +231,165 @@
     "detail": "红糖糯米糕，蒸煎两相宜",
     "imageUrl": "https://tse1-mm.cn.bing.net/th/id/OIP-C.P3mL1uN4u5XyfZg3QZ7yqQHaFj?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
     "content": "甜粿是潮汕节庆必备糕点，用糯米粉加红糖蒸制而成，口感黏糯香甜，可直接蒸热食用，也可切片煎至外皮焦香，搭配花生粉更佳"
+  },
+   {
+    "id": 31,
+    "title": "潮汕鱼饺",
+    "price": 40,
+    "detail": "鱼肉打浆做皮，包鲜肉馅，汤煮鲜香",
+    "imageUrl": "https://tse4-mm.cn.bing.net/th/id/OIP-C.5bQzZ7yR3gJz7L8bL7yR3gHaHa?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "潮汕鱼饺以新鲜海鱼肉剁成泥打浆做皮，包裹猪肉或虾肉馅料，形似半月，煮入骨汤中，皮薄馅嫩，汤汁清甜，是潮汕汤品中的经典"
+  },
+  {
+    "id": 32,
+    "title": "潮汕鱼册",
+    "price": 38,
+    "detail": "鱼肉薄片卷成条，煮后鲜嫩弹牙",
+    "imageUrl": "https://tse3-mm.cn.bing.net/th/id/OIP-C.6cR4z8yR3gJz7L8bL7yR3gHaFj?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "鱼册又称“鱼卷”，将鱼肉剁浆后摊成薄片，卷成圆柱状蒸熟，切片后可煮汤或炒制，口感鲜嫩有弹性，富含海洋风味"
+  },
+  {
+    "id": 33,
+    "title": "潮汕腐乳饼",
+    "price": 15,
+    "detail": "腐乳入馅甜咸香，饼皮酥脆",
+    "imageUrl": "https://tse2-mm.cn.bing.net/th/id/OIP-C.7dS5z9yR3gJz7L8bL7yR3gHaE7?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "腐乳饼是潮汕特色糕点，以腐乳、花生、芝麻、糖等混合为馅，外皮用面粉、猪油烤制，甜咸交织，酥香开胃，常作茶点"
+  },
+  {
+    "id": 34,
+    "title": "潮汕粽球",
+    "price": 25,
+    "detail": "双拼馅料咸甜交融，糯米油润",
+    "imageUrl": "https://tse1-mm.cn.bing.net/th/id/OIP-C.8eT6z0yR3gJz7L8bL7yR3gHaFj?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "潮汕粽球以糯米包裹咸甜双拼馅料（咸蛋黄、五花肉+豆沙、花生），一个粽子两种口味，粽叶清香渗入糯米，口感丰富有层次"
+  },
+  {
+    "id": 35,
+    "title": "潮汕粿肉",
+    "price": 18,
+    "detail": "腐皮卷粿料炸制，外酥内软",
+    "imageUrl": "https://tse4-mm.cn.bing.net/th/id/OIP-C.9fU7z1yR3gJz7L8bL7yR3gHaHa?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "粿肉是潮汕常见小吃，用腐皮包裹由猪肉、香菇、虾米、马蹄等混合的粿料，卷成条后炸至金黄，外酥里嫩，搭配桔油解腻"
+  },
+  {
+    "id": 36,
+    "title": "潮汕鱼饭",
+    "price": 30,
+    "detail": "海鱼盐水煮熟，保留本味鲜甜",
+    "imageUrl": "https://tse3-mm.cn.bing.net/th/id/OIP-C.afV8z2yR3gJz7L8bL7yR3gHaFj?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "鱼饭并非米饭，而是将新鲜海鱼（如巴浪鱼、龙头鱼）用盐水煮熟，冷却后装盘，肉质紧实，原汁原味，是潮汕人钟爱的海鲜冷盘"
+  },
+  {
+    "id": 37,
+    "title": "潮汕咸粥",
+    "price": 28,
+    "detail": "粥底绵密，海鲜干货熬煮",
+    "imageUrl": "https://tse2-mm.cn.bing.net/th/id/OIP-C.bgW9z3yR3gJz7L8bL7yR3gHaE7?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "潮汕咸粥以糯米或大米熬制，加入虾、干贝、鱿鱼、瘦肉等食材，粥底浓稠绵密，海鲜的鲜味融入粥中，营养丰富，暖身开胃"
+  },
+  {
+    "id": 38,
+    "title": "潮汕朥糕",
+    "price": 12,
+    "detail": "猪油糯米糕，甜咸分层香糯",
+    "imageUrl": "https://tse1-mm.cn.bing.net/th/id/OIP-C.chX0z4yR3gJz7L8bL7yR3gHaFj?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "朥糕以糯米粉加猪油蒸制，分甜咸两味：甜味加红糖、花生；咸味加虾米、腊肠，口感油润香糯，是潮汕节庆或早餐常见糕点"
+  },
+  {
+    "id": 39,
+    "title": "潮汕猪红粿",
+    "price": 10,
+    "detail": "猪血糯米糕，咸香弹牙",
+    "imageUrl": "https://tse4-mm.cn.bing.net/th/id/OIP-C.djY1z5yR3gJz7L8bL7yR3gHaHa?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "猪红粿以猪血混合糯米粉、调味料蒸制而成，质地紧实有弹性，切片后可煎制或煮汤，咸香入味，是潮汕地区的传统小吃"
+  },
+  {
+    "id": 40,
+    "title": "潮汕菜脯蛋",
+    "price": 18,
+    "detail": "菜脯粒炒鸡蛋，咸香下饭",
+    "imageUrl": "https://tse3-mm.cn.bing.net/th/id/OIP-C.ekZ2z6yR3gJz7L8bL7yR3gHaFj?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "菜脯蛋是潮汕家常菜，将萝卜干（菜脯）切丁炒香，加入蛋液煎成饼，外焦里嫩，菜脯的咸香与鸡蛋的嫩滑结合，是经典下饭菜"
+  },
+  {
+    "id": 41,
+    "title": "潮汕咸水梅",
+    "price": 15,
+    "detail": "青梅腌制咸酸适口，佐茶配粥",
+    "imageUrl": "https://tse2-mm.cn.bing.net/th/id/OIP-C.flA3z7yR3gJz7L8bL7yR3gHaE7?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "咸水梅是潮汕特色腌制品，青梅用粗盐腌制数月，果肉咸酸脆爽，可直接食用，也可用于烹饪提味（如蒸鱼、煲汤），或泡咸梅茶解腻"
+  },
+  {
+    "id": 42,
+    "title": "潮汕粿汁皮",
+    "price": 8,
+    "detail": "米浆烙制薄皮，可炒可煮",
+    "imageUrl": "https://tse1-mm.cn.bing.net/th/id/OIP-C.gmB4z8yR3gJz7L8bL7yR3gHaFj?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "粿汁皮是制作粿汁的原料，将米浆在平底锅中烙成薄皮，可直接煮入汤中，也可切丝炒制，口感软滑有米香，搭配卤味更佳"
+  },
+  {
+    "id": 43,
+    "title": "潮汕鱼丸汤",
+    "price": 35,
+    "detail": "鱼丸配菜心豆腐，汤头清甜",
+    "imageUrl": "https://tse4-mm.cn.bing.net/th/id/OIP-C.hnC5z9yR3gJz7L8bL7yR3gHaHa?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "鱼丸汤以潮汕鱼丸为主料，搭配菜心、豆腐等煮制，鱼丸弹牙多汁，汤头用鱼骨熬制，清爽鲜甜，是老少皆宜的家常汤品"
+  },
+  {
+    "id": 44,
+    "title": "潮汕红壳桃",
+    "price": 15,
+    "detail": "红曲米染色粿皮，包椰丝花生",
+    "imageUrl": "https://tse3-mm.cn.bing.net/th/id/OIP-C.oiD6z0yR3gJz7L8bL7yR3gHaFj?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "红壳桃是潮汕婚庆、寿宴必备粿品，粿皮用红曲米染色呈粉红色，包裹椰丝、花生、芝麻等甜馅，造型如桃，寓意吉祥长寿"
+  },
+  {
+    "id": 45,
+    "title": "潮汕糯米猪肠",
+    "price": 28,
+    "detail": "猪肠填糯米莲子，卤制软糯香甜",
+    "imageUrl": "https://tse2-mm.cn.bing.net/th/id/OIP-C.pjE7z1yR3gJz7L8bL7yR3gHaE7?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "糯米猪肠是潮汕传统滋补小吃，猪肠洗净后填入糯米、莲子、花生等，用卤汁慢火煮至软烂，切开后糯米吸收猪肠油脂，甜咸交织"
+  },
+  {
+    "id": 46,
+    "title": "潮汕咸粿",
+    "price": 10,
+    "detail": "米浆蒸制咸香糕，配菜脯粒",
+    "imageUrl": "https://tse1-mm.cn.bing.net/th/id/OIP-C.qkF8z2yR3gJz7L8bL7yR3gHaFj?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "咸粿以米浆加盐水蒸制而成，质地松软，表面撒菜脯粒（萝卜干碎），咸香开胃，常作为早餐或茶点，可直接食用或煎制"
+  },
+  {
+    "id": 47,
+    "title": "潮汕虾蛄粿",
+    "price": 22,
+    "detail": "米浆蒸制加虾蛄肉，鲜香嫩滑",
+    "imageUrl": "https://tse4-mm.cn.bing.net/th/id/OIP-C.rlG9z3yR3gJz7L8bL7yR3gHaHa?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "虾蛄粿是潮汕沿海特色小吃，米浆中加入新鲜虾蛄肉（皮皮虾）蒸制而成，粿体嫩滑，虾蛄的鲜味融入米香中，风味独特"
+  },
+  {
+    "id": 48,
+    "title": "潮汕豆仁糖",
+    "price": 20,
+    "detail": "花生芝麻麦芽糖，酥脆香甜",
+    "imageUrl": "https://tse3-mm.cn.bing.net/th/id/OIP-C.slH0z4yR3gJz7L8bL7yR3gHaFj?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "豆仁糖是潮汕传统糖果，将麦芽糖加热后混入炒香的花生、芝麻，压制成块后切条，口感酥脆，甜而不腻，是过年必备的应节食品"
+  },
+  {
+    "id": 49,
+    "title": "潮汕粿酱",
+    "price": 12,
+    "detail": "糯米发酵制酱，甜酸抹粿品",
+    "imageUrl": "https://tse2-mm.cn.bing.net/th/id/OIP-C.tmI1z5yR3gJz7L8bL7yR3gHaE7?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "粿酱是潮汕特有的蘸料，用糯米发酵制成，呈粘稠状，甜中带微酸，常用于涂抹在粿品（如乒乓粿、红桃粿）上，增添风味"
+  },
+  {
+    "id": 50,
+    "title": "潮汕咸蛋黄粿",
+    "price": 18,
+    "detail": "糯米裹咸蛋黄蒸制，咸香沙糯",
+    "imageUrl": "https://tse1-mm.cn.bing.net/th/id/OIP-C.unJ2z6yR3gJz7L8bL7yR3gHaFj?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "content": "咸蛋黄粿以糯米粉包裹咸蛋黄蒸制而成，糯米软糯，咸蛋黄沙糯流油，一口下去咸香四溢，是潮汕糕点中兼具传统与创新的代表"
   }
 ]
