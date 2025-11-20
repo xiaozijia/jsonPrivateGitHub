@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/search_linear_favorites"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <SearchView
+            android:id="@+id/searchViewFavorites"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:iconifiedByDefault="true"
+            android:queryHint="搜索收藏" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/favorites_no_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/favorites_idle"
+        android:textSize="17sp"
+        android:padding="10dp"
+        android:textAlignment="center"
+        android:layout_gravity="center" />
+
+    <ListView
+        android:id="@+id/favorites_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+</LinearLayout>

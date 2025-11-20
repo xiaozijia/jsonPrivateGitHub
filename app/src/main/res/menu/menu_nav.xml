@@ -21,25 +21,12 @@
                     android:id="@+id/nav_dev"
                     android:icon="@drawable/ic_menu_dev"
                     android:title="@string/nav_menu_dev" />
+                <item
+                    android:id="@+id/nav_favorites"
+                    android:icon="@drawable/border_window"
+                    android:title="@string/collect" />
             </menu>
         </item>
     </group>
-
-    <item android:title="@string/nav_menu_more">
-        <menu>
-            <item
-                android:id="@+id/nav_update"
-                android:icon="@drawable/ic_menu_upgrade"
-                android:title="@string/nav_menu_upgrade" />
-            <item
-                android:id="@+id/nav_feedback"
-                android:icon="@drawable/ic_menu_feedback"
-                android:title="@string/nav_menu_feedback" />
-            <item
-                android:id="@+id/nav_contact"
-                android:icon="@drawable/ic_contact"
-                android:title="@string/nav_menu_contact" />
-        </menu>
-    </item>
 
 </menu>

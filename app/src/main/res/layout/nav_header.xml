@@ -44,15 +44,5 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/app_tips"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center_vertical"
-        android:gravity="center_vertical"
-        android:text="@string/nav_app_tips"
-        android:drawablePadding="5dip"
-        app:drawableStartCompat="@drawable/ic_msg"/>
 
 </LinearLayout>

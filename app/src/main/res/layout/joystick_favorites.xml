@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="700dp"
+    android:layout_height="900dp"
+    android:background="@drawable/border_window">
+
+    <!-- 空数据提示 -->
+    <TextView
+        android:id="@+id/empty_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="暂无收藏"
+        android:textSize="36sp"
+        android:layout_gravity="center"/>
+
+    <!-- 关闭按钮 -->
+
+
+    <!-- 收藏列表 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/joystick_fav_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="30dp"/>
+
+    <!-- 字母索引栏 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/letter_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:paddingHorizontal="20dp"/>
+
+    <ImageButton
+        android:id="@+id/joystick_fav_close"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="top|end"
+        android:layout_margin="15dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_close"
+        android:theme="@style/RippleWhite" />
+
+</FrameLayout>

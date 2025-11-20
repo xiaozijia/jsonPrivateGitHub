@@ -42,6 +42,18 @@
             app:pressedTranslationZ="12dp"
             app:srcCompat="@drawable/ic_position" />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/faBtnFavorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="80dp"
+            android:contentDescription="@null"
+            app:elevation="6dp"
+            app:pressedTranslationZ="12dp"
+            app:srcCompat="@drawable/ic_save" />
+
         <LinearLayout
             android:id="@+id/search_linear"
             android:layout_width="match_parent"

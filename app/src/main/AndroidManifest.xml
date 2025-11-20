@@ -12,15 +12,17 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <!-- 允许程序访问有关GSM网络信息 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <!-- 允许程序改变Wi-Fi连接状态 -->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
 
-    <uses-permission android:name="android.permission.REPLACE_EXISTING_PACKAGE"/>
-    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+    <uses-permission android:name="android.permission.REPLACE_EXISTING_PACKAGE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <!-- 允许程序打开网络套接字 -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -56,6 +58,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <!-- 百度地图 Key -->
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="${MAPS_API_KEY}" />
+
+        <!-- 百度地图 安全码 -->
+        <meta-data
+            android:name="com.baidu.lbsapi.SAFE_CODE"
+            android:value="${MAPS_SAFE_CODE}" />
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -69,45 +80,45 @@
             android:process=":remote" />
 
         <service
-            android:exported="false"
-            android:name="com.zcshou.service.ServiceGo" />
+            android:name="com.zcshou.service.ServiceGo"
+            android:exported="false" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileProvider"
-            android:grantUriPermissions="true"
-            android:exported="false">
+            android:exported="false"
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
 
         <activity
-            android:name=".WelcomeActivity"
+            android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar"
-            >
+            android:launchMode="singleInstance"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".MainActivity"
-            android:launchMode="singleInstance"
-            android:exported="false"
-            android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/app_settings"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/app_settings" />
 
         <activity
             android:name=".HistoryActivity"
-            android:label="@string/app_history"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/app_history" />
+
+        <activity
+            android:name=".FavoritesActivity"
+            android:exported="false"
+            android:label="@string/collect" />
 
     </application>
 

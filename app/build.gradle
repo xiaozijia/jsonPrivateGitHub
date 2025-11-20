@@ -26,13 +26,18 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.zcshou.gogogo"
+            applicationId "com.zcshou.gogogo"
         minSdkVersion 27
         //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 32
         versionCode 1123
         versionName '1.12.3' // https://semver.org/lang/zh-CN/
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        // 允许在未配置本地密钥时也能编译通过
+        def mapsApiKey = project.findProperty("MAPS_API_KEY") ?: ""
+        def mapsSafeCode = project.findProperty("MAPS_SAFE_CODE") ?: ""
+        buildConfigField "String", "MAPS_API_KEY", "\"${mapsApiKey}\""
+        buildConfigField "String", "MAPS_SAFE_CODE", "\"${mapsSafeCode}\""
         resourceConfigurations += ['zh', 'zh-rCN', 'en', 'en-rUS']
         ndk {
             //noinspection ChromeOsAbiSupport

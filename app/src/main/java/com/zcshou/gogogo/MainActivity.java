@@ -1,23 +1,23 @@
 package com.zcshou.gogogo;
 
-import android.app.DownloadManager;
-import android.content.BroadcastReceiver;
+import android.Manifest;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.ComponentName;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.net.Uri;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
@@ -27,8 +27,6 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -45,9 +43,29 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.preference.PreferenceManager;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.File;
+
+import android.net.Uri;
+import android.view.Window;
+import android.widget.Toast;
+
+import com.zcshou.utils.ShareUtils;
+
+import java.io.IOException;
 
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
@@ -80,12 +98,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -94,18 +111,12 @@ import java.util.Map;
 import com.zcshou.service.ServiceGo;
 import com.zcshou.database.DataBaseHistoryLocation;
 import com.zcshou.database.DataBaseHistorySearch;
-import com.zcshou.utils.ShareUtils;
+import com.zcshou.database.DataBaseHistoryFavorite;
 import com.zcshou.utils.GoUtils;
 import com.zcshou.utils.MapUtils;
 
 import com.elvishew.xlog.XLog;
 
-import io.noties.markwon.Markwon;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
 
 public class MainActivity extends BaseActivity implements SensorEventListener {
     /* 对外 */
@@ -146,6 +157,9 @@ public class MainActivity extends BaseActivity implements SensorEventListener {
     private boolean isMockServStart = false;
     private ServiceGo.ServiceGoBinder mServiceBinder;
     private ServiceConnection mConnection;
+
+    private static final int LOCATION_PERMISSION_CODE = 1001;
+    private static final int LOCATION_SETTING_CODE = 1002;
     private FloatingActionButton mButtonStart;
     /*============================== 历史记录 相关 ==============================*/
     private SQLiteDatabase mLocationHistoryDB;
@@ -158,16 +172,14 @@ public class MainActivity extends BaseActivity implements SensorEventListener {
     private LinearLayout mHistoryLayout;
     private MenuItem searchItem;
     private SuggestionSearch mSuggestionSearch;
-    /*============================== 更新 相关 ==============================*/
-    private DownloadManager mDownloadManager = null;
-    private long mDownloadId;
-    private BroadcastReceiver mDownloadBdRcv;
-    private String mUpdateFilename;
+    /*============================== 收藏 相关 ==============================*/
+    private SQLiteDatabase mFavoriteDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        checkLocationPermission();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -196,7 +208,7 @@ public class MainActivity extends BaseActivity implements SensorEventListener {
         mConnection = new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName name, IBinder service) {
-                mServiceBinder = (ServiceGo.ServiceGoBinder)service;
+                mServiceBinder = (ServiceGo.ServiceGoBinder) service;
             }
 
             @Override
@@ -209,10 +221,31 @@ public class MainActivity extends BaseActivity implements SensorEventListener {
 
         initSearchView();
 
-        initUpdateVersion();
-
-        checkUpdateVersion(false);
+        initFavorites();
     }
+
+    private void checkLocationPermission() {
+        new AlertDialog.Builder(this)
+                .setTitle("定位权限")
+                .setMessage("是否开启定位权限？")
+                .setPositiveButton("确定", (dialog, which) -> {
+                    // 点确定 → 自动申请系统权限
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        requestPermissions(
+                                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                                LOCATION_PERMISSION_CODE
+                        );
+                    }
+                })
+                .setNegativeButton("取消", (dialog, which) -> {
+                    // 取消直接退出
+                    finish();
+                })
+                .setCancelable(false)
+                .show();
+
+    }
+
 
     @Override
     protected void onPause() {
@@ -248,8 +281,6 @@ public class MainActivity extends BaseActivity implements SensorEventListener {
             Intent serviceGoIntent = new Intent(MainActivity.this, ServiceGo.class);
             stopService(serviceGoIntent);
         }
-        unregisterReceiver(mDownloadBdRcv);
-
         mSensorManager.unregisterListener(this);
 
         // 退出时销毁定位
@@ -264,6 +295,7 @@ public class MainActivity extends BaseActivity implements SensorEventListener {
         //close db
         mLocationHistoryDB.close();
         mSearchHistoryDB.close();
+        if (mFavoriteDB != null) mFavoriteDB.close();
 
         super.onDestroy();
     }
@@ -279,13 +311,14 @@ public class MainActivity extends BaseActivity implements SensorEventListener {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         //找到searchView
         searchItem = menu.findItem(R.id.action_search);
-        searchItem.setOnActionExpandListener(new  MenuItem.OnActionExpandListener() {
+        searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
             @Override
             public boolean onMenuItemActionCollapse(MenuItem item) {
                 mSearchLayout.setVisibility(View.INVISIBLE);
                 mHistoryLayout.setVisibility(View.INVISIBLE);
                 return true;  // Return true to collapse action view
             }
+
             @Override
             public boolean onMenuItemActionExpand(MenuItem item) {
                 mSearchLayout.setVisibility(View.INVISIBLE);
@@ -297,13 +330,13 @@ public class MainActivity extends BaseActivity implements SensorEventListener {
                             MainActivity.this,
                             data,
                             R.layout.search_item,
-                            new String[] {DataBaseHistorySearch.DB_COLUMN_KEY,
+                            new String[]{DataBaseHistorySearch.DB_COLUMN_KEY,
                                     DataBaseHistorySearch.DB_COLUMN_DESCRIPTION,
                                     DataBaseHistorySearch.DB_COLUMN_TIMESTAMP,
                                     DataBaseHistorySearch.DB_COLUMN_IS_LOCATION,
                                     DataBaseHistorySearch.DB_COLUMN_LONGITUDE_CUSTOM,
                                     DataBaseHistorySearch.DB_COLUMN_LATITUDE_CUSTOM},
-                            new int[] {R.id.search_key,
+                            new int[]{R.id.search_key,
                                     R.id.search_description,
                                     R.id.search_timestamp,
                                     R.id.search_isLoc,
@@ -385,10 +418,9 @@ public class MainActivity extends BaseActivity implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        if(sensorEvent.sensor.getType() == Sensor.TYPE_ACCELEROMETER){
+        if (sensorEvent.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             mAccValues = sensorEvent.values;
-        }
-        else if(sensorEvent.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD){
+        } else if (sensorEvent.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
             mMagValues = sensorEvent.values;
         }
 
@@ -407,15 +439,15 @@ public class MainActivity extends BaseActivity implements SensorEventListener {
 
     /*============================== NavigationView 相关 ==============================*/
     private void initNavigationView() {
-        /*============================== NavigationView 相关 ==============================*/
         NavigationView mNavigationView = findViewById(R.id.nav_view);
         mNavigationView.setNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
-
             if (id == R.id.nav_history) {
                 Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
-
                 startActivity(intent);
+            } else if (id == R.id.nav_favorites) {
+                Intent favIntent = new Intent(MainActivity.this, FavoritesActivity.class);
+                startActivity(favIntent);
             } else if (id == R.id.nav_settings) {
                 Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                 startActivity(intent);
@@ -430,30 +462,16 @@ public class MainActivity extends BaseActivity implements SensorEventListener {
                         GoUtils.DisplayToast(this, getResources().getString(R.string.app_error_dev));
                     }
                 }
-            } else if (id == R.id.nav_update) {
-                checkUpdateVersion(true);
-            } else if (id == R.id.nav_feedback) {
-                File file = new File(getExternalFilesDir("Logs"), GoApplication.LOG_FILE_NAME);
-                ShareUtils.shareFile(this, file, item.getTitle().toString());
-            } else if (id == R.id.nav_contact) {
-                Uri uri = Uri.parse("https://gitee.com/itexp/gogogo/issues");
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
             }
-
             DrawerLayout drawer = findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
-
             return true;
         });
-
-        // 直接获取第 0 个头部视图
         View headerView = mNavigationView.getHeaderView(0);
         TextView app_version = headerView.findViewById(R.id.app_version);
         app_version.setText(GoUtils.getVersionName(this));
     }
 
-    /*============================== 主界面地图 相关 ==============================*/
     private void initMap() {
         // 地图初始化
         mMapView = findViewById(R.id.bdMapView);
@@ -473,6 +491,7 @@ public class MainActivity extends BaseActivity implements SensorEventListener {
                 mMarkLatLngMap = point;
                 markMap();
             }
+
             /**
              * 单击地图中的POI点
              */
@@ -509,6 +528,7 @@ public class MainActivity extends BaseActivity implements SensorEventListener {
         TextView poiLatitude = poiView.findViewById(R.id.poi_latitude);
         ImageButton ibSave = poiView.findViewById(R.id.poi_save);
         ibSave.setOnClickListener(v -> {
+            saveFavoriteLocation(mMarkLatLngMap.longitude, mMarkLatLngMap.latitude, mMarkName);
             recordCurrentLocation(mMarkLatLngMap.longitude, mMarkLatLngMap.latitude);
             GoUtils.DisplayToast(this, getResources().getString(R.string.app_location_save));
         });
@@ -521,10 +541,10 @@ public class MainActivity extends BaseActivity implements SensorEventListener {
             // 将 ClipData内容放到系统剪贴板里。
             cm.setPrimaryClip(mClipData);
 
-            GoUtils.DisplayToast(this,  getResources().getString(R.string.app_location_copy));
+            GoUtils.DisplayToast(this, getResources().getString(R.string.app_location_copy));
         });
         ImageButton ibShare = poiView.findViewById(R.id.poi_share);
-        ibShare.setOnClickListener(v -> ShareUtils.shareText(MainActivity.this, "分享位置", poiLongitude.getText()+","+poiLatitude.getText()));
+        ibShare.setOnClickListener(v -> ShareUtils.shareText(MainActivity.this, "分享位置", poiLongitude.getText() + "," + poiLatitude.getText()));
         ImageButton ibFly = poiView.findViewById(R.id.poi_fly);
         ibFly.setOnClickListener(this::doGoLocation);
         mGeoCoder = GeoCoder.newInstance();
@@ -603,6 +623,7 @@ public class MainActivity extends BaseActivity implements SensorEventListener {
                         }
                     }
                 }
+
                 /**
                  * 错误的状态码
                  * <a><a href="http://lbsyun.baidu.com/index.php?title=android-locsdk/guide/addition-func/error-code">...</a></a>
@@ -650,7 +671,7 @@ public class MainActivity extends BaseActivity implements SensorEventListener {
         //可选，默认false，设置是否需要POI结果，可以在BDLocation.getPoiList里得到
         locationOption.setIsNeedLocationPoiList(false);
         //可选，默认false，设置是否收集CRASH信息，默认收集
-        locationOption.SetIgnoreCacheException(true);
+        // 当前 SDK 版本已无 setIgnoreCacheException 接口，移除该调用
         //可选，默认false，设置是否开启Gps定位
         //locationOption.setOpenGps(true);
         locationOption.setOpenGnss(true);
@@ -700,16 +721,16 @@ public class MainActivity extends BaseActivity implements SensorEventListener {
                 String dialog_lat_str = dialog_lat.getText().toString();
 
                 if (TextUtils.isEmpty(dialog_lng_str) || TextUtils.isEmpty(dialog_lat_str)) {
-                    GoUtils.DisplayToast(MainActivity.this,getResources().getString(R.string.app_error_input));
+                    GoUtils.DisplayToast(MainActivity.this, getResources().getString(R.string.app_error_input));
                 } else {
                     double dialog_lng_double = Double.parseDouble(dialog_lng_str);
                     double dialog_lat_double = Double.parseDouble(dialog_lat_str);
 
                     if (dialog_lng_double > 180.0 || dialog_lng_double < -180.0) {
-                        GoUtils.DisplayToast(MainActivity.this,  getResources().getString(R.string.app_error_longitude));
+                        GoUtils.DisplayToast(MainActivity.this, getResources().getString(R.string.app_error_longitude));
                     } else {
                         if (dialog_lat_double > 90.0 || dialog_lat_double < -90.0) {
-                            GoUtils.DisplayToast(MainActivity.this,  getResources().getString(R.string.app_error_latitude));
+                            GoUtils.DisplayToast(MainActivity.this, getResources().getString(R.string.app_error_latitude));
                         } else {
                             if (rbBD.isChecked()) {
                                 mMarkLatLngMap = new LatLng(dialog_lat_double, dialog_lng_double);
@@ -785,6 +806,9 @@ public class MainActivity extends BaseActivity implements SensorEventListener {
     private void initGoBtn() {
         mButtonStart = findViewById(R.id.faBtnStart);
         mButtonStart.setOnClickListener(this::doGoLocation);
+
+        FloatingActionButton mButtonFavorite = findViewById(R.id.faBtnFavorite);
+        mButtonFavorite.setOnClickListener(this::showFavoriteDialog);
     }
 
     private void startGoLocation() {
@@ -844,9 +868,7 @@ public class MainActivity extends BaseActivity implements SensorEventListener {
                 mBaiduMap.clear();
                 mMarkLatLngMap = null;
 
-                if (GoUtils.isWifiEnabled(MainActivity.this)) {
-                    GoUtils.showDisableWifiDialog(MainActivity.this);
-                }
+                GoUtils.isWifiEnabled(MainActivity.this);
             }
         } else {
             if (!GoUtils.isAllowMockLocation(this)) {
@@ -865,10 +887,7 @@ public class MainActivity extends BaseActivity implements SensorEventListener {
                     recordCurrentLocation(mMarkLatLngMap.longitude, mMarkLatLngMap.latitude);
                     mBaiduMap.clear();
                     mMarkLatLngMap = null;
-
-                    if (GoUtils.isWifiEnabled(MainActivity.this)) {
-                        GoUtils.showDisableWifiDialog(MainActivity.this);
-                    }
+                    GoUtils.isWifiEnabled(MainActivity.this);
                 }
             }
         }
@@ -894,7 +913,7 @@ public class MainActivity extends BaseActivity implements SensorEventListener {
 
         try {
             Cursor cursor = mSearchHistoryDB.query(DataBaseHistorySearch.TABLE_NAME, null,
-                    DataBaseHistorySearch.DB_COLUMN_ID + " > ?", new String[] {"0"},
+                    DataBaseHistorySearch.DB_COLUMN_ID + " > ?", new String[]{"0"},
                     null, null, DataBaseHistorySearch.DB_COLUMN_TIMESTAMP + " DESC", null);
 
             while (cursor.moveToNext()) {
@@ -964,7 +983,7 @@ public class MainActivity extends BaseActivity implements SensorEventListener {
                             DataBaseHistoryLocation.saveHistoryLocation(mLocationHistoryDB, contentValues);
                         } else {
                             ContentValues contentValues = new ContentValues();
-                            contentValues.put(DataBaseHistoryLocation.DB_COLUMN_LOCATION, mMarkName == null ? getRetJson.getString("message"): mMarkName);
+                            contentValues.put(DataBaseHistoryLocation.DB_COLUMN_LOCATION, mMarkName == null ? getRetJson.getString("message") : mMarkName);
                             contentValues.put(DataBaseHistoryLocation.DB_COLUMN_LONGITUDE_WGS84, String.valueOf(latLng[0]));
                             contentValues.put(DataBaseHistoryLocation.DB_COLUMN_LATITUDE_WGS84, String.valueOf(latLng[1]));
                             contentValues.put(DataBaseHistoryLocation.DB_COLUMN_TIMESTAMP, System.currentTimeMillis() / 1000);
@@ -1073,11 +1092,11 @@ public class MainActivity extends BaseActivity implements SensorEventListener {
             new AlertDialog.Builder(MainActivity.this)
                     .setTitle("警告")//这里是表头的内容
                     .setMessage("确定要删除该项搜索记录吗?")//这里是中间显示的具体信息
-                    .setPositiveButton("确定",(dialog, which) -> {
+                    .setPositiveButton("确定", (dialog, which) -> {
                         String searchKey = ((TextView) view.findViewById(R.id.search_key)).getText().toString();
 
                         try {
-                            mSearchHistoryDB.delete(DataBaseHistorySearch.TABLE_NAME, DataBaseHistorySearch.DB_COLUMN_KEY + " = ?", new String[] {searchKey});
+                            mSearchHistoryDB.delete(DataBaseHistorySearch.TABLE_NAME, DataBaseHistorySearch.DB_COLUMN_KEY + " = ?", new String[]{searchKey});
                             //删除成功
                             //展示搜索历史
                             List<Map<String, Object>> data = getSearchHistory();
@@ -1087,19 +1106,19 @@ public class MainActivity extends BaseActivity implements SensorEventListener {
                                         MainActivity.this,
                                         data,
                                         R.layout.search_item,
-                                        new String[] {DataBaseHistorySearch.DB_COLUMN_KEY,
+                                        new String[]{DataBaseHistorySearch.DB_COLUMN_KEY,
                                                 DataBaseHistorySearch.DB_COLUMN_DESCRIPTION,
                                                 DataBaseHistorySearch.DB_COLUMN_TIMESTAMP,
                                                 DataBaseHistorySearch.DB_COLUMN_IS_LOCATION,
                                                 DataBaseHistorySearch.DB_COLUMN_LONGITUDE_CUSTOM,
                                                 DataBaseHistorySearch.DB_COLUMN_LATITUDE_CUSTOM}, // 与下面数组元素要一一对应
-                                        new int[] {R.id.search_key, R.id.search_description, R.id.search_timestamp, R.id.search_isLoc, R.id.search_longitude, R.id.search_latitude});
+                                        new int[]{R.id.search_key, R.id.search_description, R.id.search_timestamp, R.id.search_isLoc, R.id.search_longitude, R.id.search_latitude});
                                 mSearchHistoryList.setAdapter(simAdapt);
                                 mHistoryLayout.setVisibility(View.VISIBLE);
                             }
                         } catch (Exception e) {
                             XLog.e("ERROR: delete database error");
-                            GoUtils.DisplayToast(MainActivity.this,getResources().getString(R.string.history_delete_error));
+                            GoUtils.DisplayToast(MainActivity.this, getResources().getString(R.string.history_delete_error));
                         }
                     })
                     .setNegativeButton("取消",
@@ -1112,7 +1131,7 @@ public class MainActivity extends BaseActivity implements SensorEventListener {
         mSuggestionSearch = SuggestionSearch.newInstance();
         mSuggestionSearch.setOnGetSuggestionResultListener(suggestionResult -> {
             if (suggestionResult == null || suggestionResult.getAllSuggestions() == null) {
-                GoUtils.DisplayToast(this,getResources().getString(R.string.app_search_null));
+                GoUtils.DisplayToast(this, getResources().getString(R.string.app_search_null));
             } else {
                 List<Map<String, Object>> data = getMapList(suggestionResult);
 
@@ -1120,8 +1139,8 @@ public class MainActivity extends BaseActivity implements SensorEventListener {
                         MainActivity.this,
                         data,
                         R.layout.search_poi_item,
-                        new String[] {POI_NAME, POI_ADDRESS, POI_LONGITUDE, POI_LATITUDE}, // 与下面数组元素要一一对应
-                        new int[] {R.id.poi_name, R.id.poi_address, R.id.poi_longitude, R.id.poi_latitude});
+                        new String[]{POI_NAME, POI_ADDRESS, POI_LONGITUDE, POI_LATITUDE}, // 与下面数组元素要一一对应
+                        new int[]{R.id.poi_name, R.id.poi_address, R.id.poi_longitude, R.id.poi_latitude});
                 mSearchList.setAdapter(simAdapt);
                 // mSearchList.setVisibility(View.VISIBLE);
                 mSearchLayout.setVisibility(View.VISIBLE);
@@ -1149,136 +1168,109 @@ public class MainActivity extends BaseActivity implements SensorEventListener {
         return data;
     }
 
-    /*============================== 更新 相关 ==============================*/
-    private void initUpdateVersion() {
-        mDownloadManager =(DownloadManager) MainActivity.this.getSystemService(DOWNLOAD_SERVICE);
-
-        // 用于监听下载完成后，转到安装界面
-        mDownloadBdRcv = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                installNewVersion();
-            }
-        };
-        registerReceiver(mDownloadBdRcv, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+    private void initFavorites() {
+        try {
+            com.zcshou.database.DataBaseHistoryFavorite dbFav =
+                    new com.zcshou.database.DataBaseHistoryFavorite(getApplicationContext());
+            mFavoriteDB = dbFav.getWritableDatabase();
+        } catch (Exception e) {
+            XLog.e("ERROR: favorites db init error");
+        }
     }
 
-    private void checkUpdateVersion(boolean result) {
-        String mapApiUrl = "https://api.github.com/repos/zcshou/gogogo/releases/latest";
-
-        okhttp3.Request request = new okhttp3.Request.Builder().url(mapApiUrl).get().build();
-        final Call call = mOkHttpClient.newCall(request);
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                XLog.i("更新检测失败");
-            }
-
-            @Override
-            public void onResponse(@NonNull Call call, @NonNull okhttp3.Response response) throws IOException {
-                ResponseBody responseBody = response.body();
-                if (responseBody != null) {
-                    String resp = responseBody.string();
-                    // 注意，该请求在子线程，不能直接操作界面
-                    runOnUiThread(() -> {
-                        try {
-                            JSONObject getRetJson = new JSONObject(resp);
-                            String curVersion = GoUtils.getVersionName(MainActivity.this);
-
-                            if (curVersion != null
-                                    && (!getRetJson.getString("name").contains(curVersion)
-                                    || !getRetJson.getString("tag_name").contains(curVersion))) {
-                                final android.app.AlertDialog alertDialog = new android.app.AlertDialog.Builder(MainActivity.this).create();
-                                alertDialog.show();
-                                alertDialog.setCancelable(false);
-                                Window window = alertDialog.getWindow();
-                                if (window != null) {
-                                    window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);      // 防止出现闪屏
-                                    window.setContentView(R.layout.update);
-                                    window.setGravity(Gravity.CENTER);
-                                    window.setWindowAnimations(R.style.DialogAnimFadeInFadeOut);
-
-                                    TextView updateTitle = window.findViewById(R.id.update_title);
-                                    updateTitle.setText(getRetJson.getString("name"));
-                                    TextView updateTime = window.findViewById(R.id.update_time);
-                                    updateTime.setText(getRetJson.getString("created_at"));
-                                    TextView updateCommit = window.findViewById(R.id.update_commit);
-                                    updateCommit.setText(getRetJson.getString("target_commitish"));
-
-                                    TextView updateContent = window.findViewById(R.id.update_content);
-                                    final Markwon markwon = Markwon.create(MainActivity.this);
-                                    markwon.setMarkdown(updateContent, getRetJson.getString("body"));
-
-                                    Button updateCancel = window.findViewById(R.id.update_ignore);
-                                    updateCancel.setOnClickListener(v -> alertDialog.cancel());
-
-                                    /* 这里用来保存下载地址 */
-                                    JSONArray jsonArray = new JSONArray(getRetJson.getString("assets"));
-                                    JSONObject jsonObject = jsonArray.getJSONObject(0);
-                                    String download_url = jsonObject.getString("browser_download_url");
-                                    mUpdateFilename = jsonObject.getString("name");
-
-                                    Button updateAgree = window.findViewById(R.id.update_agree);
-                                    updateAgree.setOnClickListener(v -> {
-                                        alertDialog.cancel();
-                                        GoUtils.DisplayToast(MainActivity.this, getResources().getString(R.string.update_downloading));
-                                        downloadNewVersion(download_url);
-                                    });
-                                }
-                            } else {
-                                if (result) {
-                                    GoUtils.DisplayToast(MainActivity.this, getResources().getString(R.string.update_last));
-                                }
-                            }
-                        } catch (JSONException e) {
-                            XLog.e("ERROR: resolve json");
-                        }
-                    });
-                }
-            }
-        });
+    private void saveFavoriteLocation(double lng, double lat, String name) {
+        try {
+            if (mFavoriteDB == null) return;
+            double[] wgs = com.zcshou.utils.MapUtils.bd2wgs(lng, lat);
+            android.content.ContentValues cv = new android.content.ContentValues();
+            cv.put(com.zcshou.database.DataBaseHistoryFavorite.DB_COLUMN_NAME,
+                    (name != null && !name.isEmpty()) ? name : "收藏位置");
+            cv.put(com.zcshou.database.DataBaseHistoryFavorite.DB_COLUMN_LONGITUDE_WGS84, String.valueOf(wgs[0]));
+            cv.put(com.zcshou.database.DataBaseHistoryFavorite.DB_COLUMN_LATITUDE_WGS84, String.valueOf(wgs[1]));
+            cv.put(com.zcshou.database.DataBaseHistoryFavorite.DB_COLUMN_TIMESTAMP, System.currentTimeMillis() / 1000);
+            cv.put(com.zcshou.database.DataBaseHistoryFavorite.DB_COLUMN_LONGITUDE_CUSTOM, String.valueOf(lng));
+            cv.put(com.zcshou.database.DataBaseHistoryFavorite.DB_COLUMN_LATITUDE_CUSTOM, String.valueOf(lat));
+            com.zcshou.database.DataBaseHistoryFavorite.saveFavorite(mFavoriteDB, cv);
+        } catch (Exception e) {
+            XLog.e("ERROR: saveFavoriteLocation");
+        }
     }
 
-    private void downloadNewVersion(String url) {
-        if (mDownloadManager == null) {
+    private void showFavoriteDialog(View v) {
+        if (mMarkLatLngMap == null) {
+            GoUtils.DisplayToast(this, "请先点击地图位置或者搜索位置");
             return;
         }
 
-        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
-        request.setAllowedOverRoaming(false);
-        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-        request.setTitle(GoUtils.getAppName(this));
-        request.setDescription("正在下载新版本...");
-        request.setMimeType("application/vnd.android.package-archive");
+        AlertDialog dialog;
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle("收藏位置");
+        View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.favorite_dialog, null);
+        builder.setView(view);
+        dialog = builder.show();
 
-        // DownloadManager不会覆盖已有的同名文件，需要自己来删除已存在的文件
-        File file = new File(getExternalFilesDir("Updates"), mUpdateFilename);
-        if (file.exists()) {
-            if(!file.delete()) {
+        EditText etName = view.findViewById(R.id.favorite_name);
+        TextView tvLng = view.findViewById(R.id.favorite_lng);
+        TextView tvLat = view.findViewById(R.id.favorite_lat);
+
+        // 设置经度和纬度（写死，不需要用户输入）
+        tvLng.setText(String.valueOf(mMarkLatLngMap.longitude));
+        tvLat.setText(String.valueOf(mMarkLatLngMap.latitude));
+
+        Button btnConfirm = view.findViewById(R.id.favorite_confirm);
+        btnConfirm.setOnClickListener(v2 -> {
+            String name = etName.getText().toString().trim();
+            if (TextUtils.isEmpty(name)) {
+                GoUtils.DisplayToast(MainActivity.this, "请输入坐标名字");
                 return;
             }
-        }
-        request.setDestinationUri(Uri.fromFile(file));
 
-        mDownloadId = mDownloadManager.enqueue(request);
-    }
+            // 👇 👇 👇 加入这段，获取首字母
+            new Thread(() -> {
+                try {
+                    String url = "https://hn.api.yesapi.net/api/Ext/Pinyin/Convert?app_key=E221C159571B698F606C042E8018164A&text=" + name+ "&return_data=1";
+                    HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
+                    conn.setRequestMethod("GET");
 
-    private void installNewVersion() {
-        Intent install = new Intent(Intent.ACTION_VIEW);
-        Uri downloadFileUri = mDownloadManager.getUriForDownloadedFile(mDownloadId);
-        File file = new File(getExternalFilesDir("Updates"), mUpdateFilename);
-        if (downloadFileUri != null) {
-            install.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-            // 在Broadcast中启动活动需要添加Intent.FLAG_ACTIVITY_NEW_TASK
-            install.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            install.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);    //添加这一句表示对目标应用临时授权该Uri所代表的文件
-            install.addCategory("android.intent.category.DEFAULT");
-            install.setDataAndType(ShareUtils.getUriFromFile(MainActivity.this, file), "application/vnd.android.package-archive");
-            startActivity(install);
-        } else {
-            Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, Uri.parse("package:" + getPackageName()));
-            intent.addCategory("android.intent.category.DEFAULT");
-            startActivity(intent);
-        }
+                    if (conn.getResponseCode() == 200) {
+                        InputStream is = conn.getInputStream();
+                        byte[] buf = new byte[1024];
+                        int len;
+                        StringBuilder sb = new StringBuilder();
+                        while ((len = is.read(buf)) != -1) sb.append(new String(buf, 0, len));
+                        is.close();
+
+                        String pinyin = new JSONObject(sb.toString()).optString("pinyin");
+                        String first = pinyin.isEmpty() ? "#" : pinyin.substring(0, 1).toUpperCase();
+
+                        // 回到主线程保存
+                        runOnUiThread(() -> {
+                            // 把 first 存入数据库
+                            ContentValues cv = new ContentValues();
+                            cv.put(DataBaseHistoryFavorite.DB_COLUMN_NAME, name);
+                            cv.put(DataBaseHistoryFavorite.DB_COLUMN_LONGITUDE_WGS84, String.valueOf(mMarkLatLngMap.longitude));
+                            cv.put(DataBaseHistoryFavorite.DB_COLUMN_LATITUDE_WGS84, String.valueOf(mMarkLatLngMap.latitude));
+                            cv.put(DataBaseHistoryFavorite.DB_COLUMN_LONGITUDE_CUSTOM, String.valueOf(mMarkLatLngMap.longitude));
+                            cv.put(DataBaseHistoryFavorite.DB_COLUMN_LATITUDE_CUSTOM, String.valueOf(mMarkLatLngMap.latitude));
+                            cv.put(DataBaseHistoryFavorite.DB_COLUMN_TIMESTAMP, System.currentTimeMillis());
+                            cv.put(DataBaseHistoryFavorite.DB_COLUMN_FIRST_LETTER, first); // 👈 首字母
+
+                            DataBaseHistoryFavorite db = new DataBaseHistoryFavorite(MainActivity.this);
+                            SQLiteDatabase sdb = db.getWritableDatabase();
+                            DataBaseHistoryFavorite.saveFavorite(sdb, cv);
+
+                            GoUtils.DisplayToast(MainActivity.this, "收藏成功");
+                            sendBroadcast(new Intent("FAVORITE_CHANGED"));
+                            dialog.dismiss();
+                        });
+                    }
+                } catch (Exception e) {
+                    runOnUiThread(() -> GoUtils.DisplayToast(MainActivity.this, "保存失败"));
+                }
+            }).start();
+        });
+
+        Button btnCancel = view.findViewById(R.id.favorite_cancel);
+        btnCancel.setOnClickListener(v1 -> dialog.dismiss());
     }
 }

@@ -237,22 +237,6 @@ public class GoUtils {
     }
 
     // 提醒开启位置模拟的弹框
-    public static  void showDisableWifiDialog(Context context) {
-        new AlertDialog.Builder(context)
-                .setTitle("警告")
-                .setMessage("开启 WIFI 后（即使没有连接热点）将导致定位闪回真实位置。建议关闭 WIFI，使用移动流量进行游戏！")
-                .setPositiveButton("去关闭",(dialog, which) -> {
-                    try {
-                        Intent intent = new Intent(Settings.ACTION_WIFI_SETTINGS);
-                        context.startActivity(intent);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                })
-                .setNegativeButton("忽略",(dialog, which) -> {
-                })
-                .show();
-    }
 
     public static  void DisplayToast(Context context, String str) {
         Toast toast = Toast.makeText(context, str, Toast.LENGTH_LONG);

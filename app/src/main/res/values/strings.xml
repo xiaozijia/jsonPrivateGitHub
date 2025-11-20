@@ -95,7 +95,7 @@
     <!-- 摇杆 -->
     <string name="joystick_map_tips">搜索或点击地图位置</string>
     <string name="joystick_history_tips">搜索或点击历史位置</string>
-    <string name="joystick_history">历史记录</string>
+    <string name="joystick_history">收藏记录</string>
     <string name="joystick_map">地图</string>
     <string name="joystick_move">移动</string>
     <string name="joystick_walk">步行</string>
@@ -108,10 +108,6 @@
     <string name="nav_menu_settings">设置</string>
     <string name="nav_menu_dev">开发人员选项</string>
     <string name="nav_menu_more">更多</string>
-    <string name="nav_menu_upgrade">检测更新</string>
-    <string name="nav_menu_feedback">问题反馈</string>
-    <string name="nav_menu_contact">联系作者</string>
-    <string name="nav_app_tips">仅供学习使用，否则后果自负!</string>
 
     <!-- 主界面 -->
     <string name="label_longitude">经度</string>
@@ -137,4 +133,8 @@
     <string name="update_ignore">忽略一次</string>
     <string name="update_time">更新时间：</string>
     <string name="update_commit">提交信息：</string>
+    <string name="favorites_clear">清掉所有的收藏</string>
+    <string name="app_favorites">搜索历史记录</string>
+    <string name="favorites_idle">不知道哇</string>
+    <string name="collect">收藏</string>
 </resources>
