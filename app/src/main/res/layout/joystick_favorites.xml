@@ -32,6 +32,18 @@
         android:layout_gravity="bottom"
         android:paddingHorizontal="20dp"/>
 
+    <Button
+        android:id="@+id/joystick_fav_reset"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="10dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@null"
+        android:text="重置"
+        android:textSize="30dp"
+        android:theme="@style/RippleWhite" />
+
+
     <ImageButton
         android:id="@+id/joystick_fav_close"
         android:layout_width="30dp"

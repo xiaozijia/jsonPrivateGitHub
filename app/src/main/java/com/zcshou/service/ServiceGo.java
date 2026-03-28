@@ -181,7 +181,6 @@ public class ServiceGo extends Service {
         mLocHandler.removeMessages(HANDLER_MSG_ID);
         mLocHandlerThread.quit();
         mJoyStick.destroy();
-
         removeTestProviderNetwork();
         removeTestProviderGPS();
         unregisterReceiver(mActReceiver);

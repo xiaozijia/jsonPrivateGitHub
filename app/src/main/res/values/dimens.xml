@@ -8,8 +8,8 @@
     <dimen name="joystick_btn_width">32dp</dimen>
     <dimen name="joystick_btn_height">32dp</dimen>
     <!-- 摇杆的控制按钮 -->
-    <dimen name="joystick_ctrl_btn_width">30dp</dimen>
-    <dimen name="joystick_ctrl_btn_height">30dp</dimen>
+    <dimen name="joystick_ctrl_btn_width">40dp</dimen>
+    <dimen name="joystick_ctrl_btn_height">40dp</dimen>
     <!-- RockView -->
     <dimen name="joystick_rockerview_width">96dp</dimen>
     <dimen name="joystick_rockerview_height">96dp</dimen>
