@@ -48,6 +48,14 @@
         tools:ignore="MockLocation,ProtectedPermissions" />
     <!-- 允许一个程序打开窗口使用 TYPE_SYSTEM_ALERT，显示在其他所有程序的顶层 -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+    <queries>
+        <package android:name="com.baidu.searchbox" />
+        <package android:name="com.baidu.input_mi" />
+        <package android:name="com.baidu.BaiduMap" />
+    </queries>
 
     <application
         android:name=".GoApplication"
@@ -72,16 +80,18 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
 
-        <!-- 百度地图 间隔定位必须配置此service否则功能无效 -->
+        <!-- 百度地图 间隔定位服务：禁用，防止百度后台采集真实GPS与模拟位置冲突 -->
         <service
             android:name="com.baidu.location.f"
-            android:enabled="true"
+            android:enabled="false"
             android:exported="false"
             android:process=":remote" />
 
         <service
             android:name="com.zcshou.service.ServiceGo"
-            android:exported="false" />
+            android:exported="false"
+            android:foregroundServiceType="location"
+            android:stopWithTask="false" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -92,6 +102,18 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+
+        <receiver
+            android:name="com.zcshou.service.BootReceiver"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter android:priority="1000">
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+            </intent-filter>
+        </receiver>
 
         <activity
             android:name=".MainActivity"

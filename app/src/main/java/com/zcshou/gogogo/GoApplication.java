@@ -31,7 +31,8 @@ public class GoApplication extends Application {
 
         // 百度地图 7.5 开始，要求必须同意隐私政策，默认为false
         SDKInitializer.setAgreePrivacy(this, true);
-        // 百度定位 7.5 开始，要求必须同意隐私政策，默认为false(官方说可以统一为以上接口，但实际测试并不行，定位还是需要单独设置)
+        // 百度定位 7.5 开始，要求必须同意隐私政策，默认为false
+        // 注意：禁止百度定位SDK自动采集真实GPS，避免与模拟位置冲突
         LocationClient.setAgreePrivacy(true);
         SDKInitializer.setApiKey(BuildConfig.MAPS_API_KEY);
         // 在使用 SDK 各组间之前初始化 context 信息，传入 ApplicationContext

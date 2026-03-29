@@ -50,7 +50,6 @@ import java.util.List;
 import java.util.Map;
 
 public class JoyStick extends View {
-    private static final int DivGo = 1000;
     private static final int WINDOW_TYPE_JOYSTICK = 0;
     private static final int WINDOW_TYPE_MAP = 1;
     private static final int WINDOW_TYPE_HISTORY = 2;
@@ -64,14 +63,7 @@ public class JoyStick extends View {
     private static final int ITEM_TYPE_HEADER = 0;
     private static final int ITEM_TYPE_ITEM = 1;
     private View mJoystickLayout;
-    private GoUtils.TimeCount mTimer;
-    private boolean isMove;
-    private double mSpeed = 1.2;
     private double mAltitude = 55.0;
-    private double mAngle = 0;
-    private double mR = 0;
-    private double disLng = 0;
-    private double disLat = 0;
     private final SharedPreferences sharedPreferences;
 
     private FrameLayout mHistoryLayout;
@@ -215,29 +207,8 @@ public class JoyStick extends View {
 
     @SuppressLint("InflateParams")
     private void initJoyStickView() {
-        mTimer = new GoUtils.TimeCount(DivGo, DivGo);
-        mTimer.setListener(new GoUtils.TimeCount.TimeCountListener() {
-            @Override
-            public void onTick(long millisUntilFinished) {
-            }
-
-            @Override
-            public void onFinish() {
-                disLng = mSpeed * (DivGo / 1000.0) * mR * Math.cos(mAngle * Math.PI / 180) / 1000.0;
-                disLat = mSpeed * (DivGo / 1000.0) * mR * Math.sin(mAngle * Math.PI / 180) / 1000.0;
-                mListener.onMoveInfo(mSpeed, disLng, disLat, 90.0F - mAngle);
-                mTimer.start();
-            }
-        });
-
-        try {
-            mSpeed = Double.parseDouble(sharedPreferences.getString("setting_walk", getResources().getString(R.string.setting_walk_default)));
-        } catch (Exception e) {
-            mSpeed = 1.2;
-        }
-
         mJoystickLayout = inflater.inflate(R.layout.joystick, null);
-        mJoystickLayout.setOnTouchListener(new JoyStickOnTouchListener());
+        mJoystickLayout.setOnTouchListener(new JoyStickOnTouchListener(mJoystickLayout));
 
         ImageButton btnHistory = mJoystickLayout.findViewById(R.id.joystick_history);
         btnHistory.setOnClickListener(v -> {
@@ -246,30 +217,13 @@ public class JoyStick extends View {
         });
     }
 
-    private void processDirection(boolean auto, double angle, double r) {
-        if (r <= 0) {
-            mTimer.cancel();
-            isMove = false;
-        } else {
-            mAngle = angle;
-            mR = r;
-            if (auto) {
-                if (!isMove) {
-                    mTimer.start();
-                    isMove = true;
-                }
-            } else {
-                mTimer.cancel();
-                isMove = false;
-                disLng = mSpeed * (DivGo / 1000.0) * mR * Math.cos(mAngle * Math.PI / 180) / 1000.0;
-                disLat = mSpeed * (DivGo / 1000.0) * mR * Math.sin(mAngle * Math.PI / 180) / 1000.0;
-                mListener.onMoveInfo(mSpeed, disLng, disLat, 90.0F - mAngle);
-            }
-        }
-    }
+    
 
     private class JoyStickOnTouchListener implements OnTouchListener {
+        private final View mRootView;
         private int x, y;
+
+        JoyStickOnTouchListener(View rootView) { this.mRootView = rootView; }
 
         @Override
         public boolean onTouch(View view, MotionEvent event) {
@@ -285,7 +239,9 @@ public class JoyStick extends View {
                     mWindowParamCurrent.y += nowY - y;
                     x = nowX;
                     y = nowY;
-                    mWindowManager.updateViewLayout(view, mWindowParamCurrent);
+                    try {
+                        mWindowManager.updateViewLayout(mRootView, mWindowParamCurrent);
+                    } catch (IllegalArgumentException ignored) {}
                     break;
                 case MotionEvent.ACTION_UP:
                     view.performClick();
@@ -296,7 +252,7 @@ public class JoyStick extends View {
     }
 
     public interface JoyStickClickListener {
-        void onMoveInfo(double speed, double disLng, double disLat, double angle);
+        
 
         void onPositionInfo(double lng, double lat, double alt);
     }
@@ -304,7 +260,7 @@ public class JoyStick extends View {
     @SuppressLint("InflateParams")
     private void initJoyStickMapView() {
         mMapLayout = (FrameLayout) inflater.inflate(R.layout.joystick_map, null);
-        mMapLayout.setOnTouchListener(new JoyStickOnTouchListener());
+        mMapLayout.setOnTouchListener(new JoyStickOnTouchListener(mMapLayout));
         initBaiduMap();
     }
 
@@ -347,7 +303,7 @@ public class JoyStick extends View {
     @SuppressLint("InflateParams")
     private void initHistoryView() {
         mHistoryLayout = (FrameLayout) inflater.inflate(R.layout.joystick_favorites, null);
-        mHistoryLayout.setOnTouchListener(new JoyStickOnTouchListener());
+        mHistoryLayout.setOnTouchListener(new JoyStickOnTouchListener(mHistoryLayout));
 
         mEmptyView = mHistoryLayout.findViewById(R.id.empty_view);
         ImageButton btnClose = mHistoryLayout.findViewById(R.id.joystick_fav_close);
@@ -585,7 +541,9 @@ public class JoyStick extends View {
                             if (s.startsWith("纬度:"))
                                 lat = Double.parseDouble(s.replace("纬度:", "").trim());
                         }
-                        mListener.onPositionInfo(lng, lat, mAltitude);
+                        // ✅ 加这一行：BD-09 → WGS-84，和 doGoLocation 保持一致
+                        double[] wgs = MapUtils.bd2wgs(lng, lat);
+                        mListener.onPositionInfo(wgs[0], wgs[1], mAltitude);
                         GoUtils.DisplayToast(mContext, "已切换：" + name);
                     } catch (Exception e) {
                         GoUtils.DisplayToast(mContext, "切换失败");
