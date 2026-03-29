@@ -166,13 +166,16 @@ public class ServiceGo extends Service {
     // ====================== 这里修复了空指针崩溃！！！ ======================
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        // 必须在5秒内调用，Android 8+ 要求
+        // initNotification 已在 onCreate 里调用，这里无需重复
         if (intent != null) {
             mCurLng = intent.getDoubleExtra(MainActivity.LNG_MSG_ID, DEFAULT_LNG);
             mCurLat = intent.getDoubleExtra(MainActivity.LAT_MSG_ID, DEFAULT_LAT);
             mCurAlt = intent.getDoubleExtra(MainActivity.ALT_MSG_ID, DEFAULT_ALT);
             mJoyStick.setCurrentPosition(mCurLng, mCurLat, mCurAlt);
         }
-        return START_STICKY;
+        // START_REDELIVER_INTENT: 被杀后系统自动重启，并重传最后一个 intent
+        return START_REDELIVER_INTENT;
     }
 
     @Override

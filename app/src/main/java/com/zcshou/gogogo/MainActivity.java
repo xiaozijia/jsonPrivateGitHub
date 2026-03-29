@@ -20,6 +20,7 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.PowerManager;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -179,6 +180,13 @@ public class MainActivity extends BaseActivity implements SensorEventListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        requestIgnoreBatteryOptimizations();
+        // 只在第一次启动时弹引导
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if (!prefs.getBoolean("battery_guide_shown", false)) {
+            GoUtils.showBatteryOptimizationGuideDialog(this);
+            prefs.edit().putBoolean("battery_guide_shown", true).apply();
+        }
         checkLocationPermission();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -222,6 +230,17 @@ public class MainActivity extends BaseActivity implements SensorEventListener {
         initSearchView();
 
         initFavorites();
+    }
+
+    private void requestIgnoreBatteryOptimizations() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+            if (pm != null && !pm.isIgnoringBatteryOptimizations(getPackageName())) {
+                Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+                intent.setData(Uri.parse("package:" + getPackageName()));
+                startActivity(intent);
+            }
+        }
     }
 
     private void checkLocationPermission() {
@@ -1228,7 +1247,7 @@ public class MainActivity extends BaseActivity implements SensorEventListener {
             // 👇 👇 👇 加入这段，获取首字母
             new Thread(() -> {
                 try {
-                    String url = "https://hn.api.yesapi.net/api/Ext/Pinyin/Convert?app_key=E221C159571B698F606C042E8018164A&text=" + name+ "&return_data=1";
+                    String url = "https://hn.api.yesapi.net/api/Ext/Pinyin/Convert?app_key=E221C159571B698F606C042E8018164A&text=" + name + "&return_data=1";
                     HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
                     conn.setRequestMethod("GET");
 

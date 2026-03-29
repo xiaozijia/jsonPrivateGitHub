@@ -236,7 +236,25 @@ public class GoUtils {
                 .show();
     }
 
-    // 提醒开启位置模拟的弹框
+    // 引导用户去设置里开启后台运行和自启动权限
+    public static void showBatteryOptimizationGuideDialog(Context context) {
+        new AlertDialog.Builder(context)
+                .setTitle("后台运行权限")
+                .setMessage("为确保模拟位置稳定运行，请前往：\n设置 → 应用 → GoGoGo → 电池/启动管理开启允许后台运行和自启动权限")
+                .setPositiveButton("去设置", (dialog, which) -> {
+                    try {
+                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                        intent.setData(Uri.parse("package:" + context.getPackageName()));
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intent);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                })
+                .setNegativeButton("我知道了", (dialog, which) -> {
+                })
+                .show();
+    }
 
     public static  void DisplayToast(Context context, String str) {
         Toast toast = Toast.makeText(context, str, Toast.LENGTH_LONG);

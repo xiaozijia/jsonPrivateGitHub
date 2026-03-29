@@ -585,7 +585,9 @@ public class JoyStick extends View {
                             if (s.startsWith("纬度:"))
                                 lat = Double.parseDouble(s.replace("纬度:", "").trim());
                         }
-                        mListener.onPositionInfo(lng, lat, mAltitude);
+                        // ✅ 加这一行：BD-09 → WGS-84，和 doGoLocation 保持一致
+                        double[] wgs = MapUtils.bd2wgs(lng, lat);
+                        mListener.onPositionInfo(wgs[0], wgs[1], mAltitude);
                         GoUtils.DisplayToast(mContext, "已切换：" + name);
                     } catch (Exception e) {
                         GoUtils.DisplayToast(mContext, "切换失败");

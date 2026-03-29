@@ -3,6 +3,7 @@ package com.zcshou.service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 
 /**
  * 开机自启广播：收到 BOOT_COMPLETED 后不启动服务（服务只在用户主动使用 app 时启动）。
@@ -12,11 +13,20 @@ import android.content.Intent;
 public class BootReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) {
-            // 目前仅唤醒进程，不自动启动定位服务
-            // 如需开机自启定位服务，取消下面注释：
-            // Intent serviceIntent = new Intent(context, ServiceGo.class);
-            // context.startForegroundService(serviceIntent);
+        String action = intent.getAction();
+        if (action == null) return;
+        switch (action) {
+            case Intent.ACTION_BOOT_COMPLETED:
+            case "android.intent.action.LOCKED_BOOT_COMPLETED":
+            case "android.intent.action.MY_PACKAGE_REPLACED":
+            case "android.intent.action.QUICKBOOT_POWERON":
+                Intent serviceIntent = new Intent(context, ServiceGo.class);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    context.startForegroundService(serviceIntent);
+                } else {
+                    context.startService(serviceIntent);
+                }
+                break;
         }
     }
 }
