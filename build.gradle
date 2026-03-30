@@ -9,7 +9,7 @@ buildscript {
 
     dependencies {
         // Replace 8.12.1 with the compatible version (8.2.0-alpha13)
-        classpath 'com.android.tools.build:gradle:8.2.0-alpha13'
+        classpath 'com.android.tools.build:gradle:9.2.0-alpha06'
         classpath("com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin:2.0.1")
     }
 }
