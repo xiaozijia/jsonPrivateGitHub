@@ -1232,7 +1232,7 @@ public class MainActivity extends BaseActivity implements SensorEventListener {
         TextView tvLng = view.findViewById(R.id.favorite_lng);
         TextView tvLat = view.findViewById(R.id.favorite_lat);
 
-        // 设置经度和纬度（写死，不需要用户输入）
+        // 设置经度和纬度（写死，不需要用户输git remote remove origin）
         tvLng.setText(String.valueOf(mMarkLatLngMap.longitude));
         tvLat.setText(String.valueOf(mMarkLatLngMap.latitude));
 
